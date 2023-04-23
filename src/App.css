@@ -1,0 +1,177 @@
+body {
+    background-color: rgba(240, 242, 245, 0.425);
+    font-family: "Roboto", sans-serif;
+}
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100vw;
+    margin-top: 20px;
+}
+.container {
+    margin-top: 50px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.participants {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+.participant_info {
+    display: flex;
+    align-items: center;
+}
+.sn {
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.div-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.div-flex-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.ant-card-body {
+    padding: 10px;
+}
+.space {
+    justify-content: space-between;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.content {
+    border-radius: 10px;
+    position: relative;
+    z-index: 1000;
+}
+.game-type {
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+}
+.game-result {
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+}
+.bar {
+    width: 100%;
+    height: 1px;
+    background-color: #302c2c;
+    margin: 5px;
+}
+
+.level {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #5e7392;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: -10px;
+    margin-bottom: -5px;
+}
+
+.match-participants {
+    width: 250px;
+}
+.summoner_name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #000000;
+}
+.participant_ally {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.participant_enemy {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.summoner-icon {
+    display: flex;
+    flex-direction: column;
+}
+.summoner-icon img {
+    border-radius: 10%;
+}
+
+.summoner-level {
+    position: relative;
+    bottom: 8px;
+    left: 35px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #202d37;
+    border-radius: 10px;
+    line-height: 20px;
+    width: 30px;
+    text-align: center;
+}
+.summoner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.kill-text {
+    font-size: 12px;
+    font-weight: 600;
+    background-color: #ffffff;
+    color: #000000;
+    width: 80px;
+    border-radius: 10px;
+    text-align: center;
+}
+.expand-div {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 30px;
+    height: 100px;
+    margin: 0px;
+    padding: 0px;
+    margin-left: 8px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.expand-div:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
