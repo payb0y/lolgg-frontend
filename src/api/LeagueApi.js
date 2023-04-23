@@ -1,5 +1,5 @@
 import axios from "axios";
-export const baseURL = "http://lolgg.herokuapp.com/api/v1";
+export const baseURL = "https://lolgg.herokuapp.com/api/v1";
 export async function getMatchHistoryV1(puuid, start) {
     return await axios
         .post(baseURL + "/matches", {
