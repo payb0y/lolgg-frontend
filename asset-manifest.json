@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/lolgg/static/css/main.c2d6b56d.css",
-    "main.js": "/lolgg/static/js/main.a0a57f94.js",
+    "main.js": "/lolgg/static/js/main.abc5a9d4.js",
     "index.html": "/lolgg/index.html",
     "main.c2d6b56d.css.map": "/lolgg/static/css/main.c2d6b56d.css.map",
-    "main.a0a57f94.js.map": "/lolgg/static/js/main.a0a57f94.js.map"
+    "main.abc5a9d4.js.map": "/lolgg/static/js/main.abc5a9d4.js.map"
   },
   "entrypoints": [
     "static/css/main.c2d6b56d.css",
-    "static/js/main.a0a57f94.js"
+    "static/js/main.abc5a9d4.js"
   ]
 }
