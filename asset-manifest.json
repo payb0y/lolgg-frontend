@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/lolgg-frontend/static/css/main.c2d6b56d.css",
+    "main.js": "/lolgg-frontend/static/js/main.a0a57f94.js",
+    "index.html": "/lolgg-frontend/index.html",
+    "main.c2d6b56d.css.map": "/lolgg-frontend/static/css/main.c2d6b56d.css.map",
+    "main.a0a57f94.js.map": "/lolgg-frontend/static/js/main.a0a57f94.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c2d6b56d.css",
+    "static/js/main.a0a57f94.js"
+  ]
+}
