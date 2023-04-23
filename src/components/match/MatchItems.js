@@ -17,7 +17,7 @@ const MatchItems = ({ participant, height, width }) => {
             {items.map((item, index) => (
                 <Item
                     alt={"item"}
-                    src={baseURL + "/itemIcon?icon=" + item}
+                    src={baseURL + "/assets/itemIcon?icon=" + item}
                     width={width}
                     height={height}
                     content={itemsName[index]}

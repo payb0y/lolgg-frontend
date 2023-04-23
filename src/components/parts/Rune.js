@@ -2,7 +2,7 @@ import { baseURL } from "../../api/LeagueApi";
 const Rune = ({ rune, width, height }) => {
     return (
         <img
-            src={baseURL + "/runeIcon?icon=" + rune.icon}
+            src={baseURL + "/assets/runeIcon?icon=" + rune.icon}
             alt={rune.name}
             width={width}
             height={height}

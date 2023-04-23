@@ -4,7 +4,7 @@ const Champion = ({ championName, width, height, style }) => {
     if (championName === "FiddleSticks") championName = "Fiddlesticks";
     return (
         <img
-            src={baseURL + "/championIcon?icon=" + championName}
+            src={baseURL + "/assets/championIcon?icon=" + championName}
             alt={championName}
             width={width}
             height={height}

@@ -1,18 +1,9 @@
 import React from "react";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
-import Stack from "@mui/material/Stack";
+import { Divider, Stack } from "@mui/material";
 import { Runes } from "../../store/Runes.js";
 import Rune from "../parts/Rune.js";
-import Divider from "@mui/material/Divider";
+import Item from "../UI/Item.js";
 
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: "white",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: "primary ",
-}));
 const MatchRunes = ({ participant }) => {
     const primaryStyle = participant.perks.styles[0].style;
     const secondaryStyle = participant.perks.styles[1].style;
@@ -55,11 +46,7 @@ const MatchRunes = ({ participant }) => {
             justifyContent="center"
             alignItems="center"
         >
-            <Item
-                sx={{
-                    backgroundColor: "rgba(128, 128, 128, 0.3)",
-                }}
-            >
+            <Item backgroundColor={"rgba(128, 128, 128, 0.3)"}>
                 <Stack
                     direction="row"
                     spacing={2}

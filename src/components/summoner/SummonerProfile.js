@@ -1,10 +1,8 @@
 import { useContext, useState } from "react";
 import { SummonerContext } from "../../store/SummonerContext";
-import Card from "@mui/material/Card";
-import { Stack } from "@mui/material";
+import { Card, Stack, Button } from "@mui/material";
 import LiveMatch from "../liveMatch/LiveMatch";
-import Button from "@mui/material/Button";
-
+import { baseURL } from "../../api/LeagueApi";
 const SummonerProfile = () => {
     const { summonerData } = useContext(SummonerContext);
     const [liveMatchVisible, setLiveMatchVisible] = useState(false);
@@ -34,7 +32,11 @@ const SummonerProfile = () => {
                     <h2>{summonerData.name}</h2>
                     <div className="summoner-icon">
                         <img
-                            src={`http://ddragon.leagueoflegends.com/cdn/13.8.1/img/profileicon/${summonerData.profileIconId}.png`}
+                            src={
+                                baseURL +
+                                "/assets/profileIcon?icon=" +
+                                summonerData.profileIconId
+                            }
                             alt="profile icon"
                             width={100}
                             height={100}

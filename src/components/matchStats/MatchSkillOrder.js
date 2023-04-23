@@ -1,17 +1,8 @@
 import { useEffect, useState } from "react";
-import { getMatchTimelineV1 } from "../../api/LeagueApi";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
+import { getMatchTimelineV1, getChampionJsonV1 } from "../../api/LeagueApi";
 import Stack from "@mui/material/Stack";
-import { getChampionJsonV1 } from "../../api/LeagueApi";
+import Item from "../UI/Item";
 
-const Card = styled(Paper)(({ theme }) => ({
-    backgroundColor: "white",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: "black ",
-}));
 const MatchSkillOrder = ({ match, championName, participantId }) => {
     const [timeline, setTimeline] = useState(null);
     const [championSkillsIcons, setChampionSkillsIcons] = useState(null);
@@ -71,11 +62,7 @@ const MatchSkillOrder = ({ match, championName, participantId }) => {
         timeline();
     }, [match.gameId, match.platformId, participantId]);
     return (
-        <Card
-            sx={{
-                backgroundColor: "rgba(128, 128, 128, 0.3)",
-            }}
-        >
+        <Item backgroundColor={"rgba(128, 128, 128, 0.3)"}>
             {championSkillsIcons && (
                 <Stack spacing={0.5}>
                     {championSkillsIcons.map((skill, index) => (
@@ -128,7 +115,7 @@ const MatchSkillOrder = ({ match, championName, participantId }) => {
                     ))}
                 </Stack>
             )}
-        </Card>
+        </Item>
     );
 };
 

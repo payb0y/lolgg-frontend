@@ -6,7 +6,7 @@ const Spell = ({ summoner, height, width }) => {
         <img
             src={
                 baseURL +
-                "/summonerSpellIcon?icon=" +
+                "/assets/summonerSpellIcon?icon=" +
                 summonerSpellName[summoner]
             }
             alt={summonerSpellName[summoner]}

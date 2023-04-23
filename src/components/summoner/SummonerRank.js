@@ -1,9 +1,7 @@
-import React, { useContext } from "react";
-import { getSummonerLeagueV1 } from "../../api/LeagueApi";
+import { useContext, useEffect, useState } from "react";
+import { Stack, Card } from "@mui/material";
+import { baseURL, getSummonerLeagueV1 } from "../../api/LeagueApi";
 import { SummonerContext } from "../../store/SummonerContext";
-import { useEffect, useState } from "react";
-import { Stack } from "@mui/material";
-import Card from "@mui/material/Card";
 const SummonerRank = () => {
     const { summonerData } = useContext(SummonerContext);
     const [summonerLeague, setSummonerLeague] = useState([]);
@@ -42,7 +40,11 @@ const SummonerRank = () => {
                             </span>
 
                             <img
-                                src={`https://opgg-static.akamaized.net/images/medals_new/${league.tier}.png?image=q_auto,f_webp,w_144&v=1681446769920`}
+                                src={
+                                    baseURL +
+                                    "/assets/summonerRankIcon?icon=" +
+                                    league.tier
+                                }
                                 alt="rank"
                                 height={120}
                             />

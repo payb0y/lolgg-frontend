@@ -1,5 +1,9 @@
 import axios from "axios";
-export const baseURL = "https://lolgg.herokuapp.com/api/v1";
+const env = "PROD";
+export const baseURL =
+    env === "DEV"
+        ? "http://localhost:8080/api/v1"
+        : "https://lolgg.herokuapp.com/api/v1";
 export async function getMatchHistoryV1(puuid, start) {
     return await axios
         .post(baseURL + "/matches", {
@@ -81,8 +85,20 @@ export async function getMatchTimelineV1(matchId, region) {
 }
 export async function getChampionJsonV1(championName) {
     return await axios
-        .post(baseURL + "/champion", {
-            championName: championName,
+        .get(baseURL + "/assets/champion?championName=" + championName)
+        .then((res) => {
+            return res;
+        })
+        .catch((error) => {
+            return error.response.data;
+        });
+}
+
+export async function getRunes() {
+    return await axios
+        .get(baseURL + "/assets/runes")
+        .then((res) => {
+            return res;
         })
         .catch((error) => {
             return error.response.data;
