@@ -1,9 +1,9 @@
-import { Button } from "antd";
 import { useContext, useState } from "react";
 import { SummonerContext } from "../../store/SummonerContext";
 import Card from "@mui/material/Card";
 import { Stack } from "@mui/material";
 import LiveMatch from "../liveMatch/LiveMatch";
+import Button from "@mui/material/Button";
 
 const SummonerProfile = () => {
     const { summonerData } = useContext(SummonerContext);
@@ -42,7 +42,7 @@ const SummonerProfile = () => {
                         <span className="summoner-level">
                             {summonerData.summonerLevel}
                         </span>
-                        <Button type="primary" onClick={HandleLive}>
+                        <Button variant="contained" onClick={HandleLive}>
                             Live Match
                         </Button>
                     </div>

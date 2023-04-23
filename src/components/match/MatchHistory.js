@@ -1,4 +1,3 @@
-import { Button } from "antd";
 import { useEffect } from "react";
 import Match from "./Match";
 import { getMatchHistoryV1, getMatchDetailsV1 } from "../../api/LeagueApi";
@@ -6,6 +5,7 @@ import { useState, useContext } from "react";
 import { SummonerContext } from "../../store/SummonerContext";
 import Card from "@mui/material/Card";
 import { Stack } from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const MatchHistory = (props) => {
     const [matchHistory, setMatchHistory] = useState([]);
@@ -52,9 +52,13 @@ const MatchHistory = (props) => {
                         <Match value={match} live={props.value} key={index} />
                     ))}
             </Card>
-            <Button onClick={handleClick} loading={isLoading}>
+            <LoadingButton
+                loading={isLoading}
+                variant="outlined"
+                onClick={handleClick}
+            >
                 More
-            </Button>
+            </LoadingButton>
         </Stack>
     );
 };
