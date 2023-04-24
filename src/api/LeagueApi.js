@@ -4,7 +4,9 @@ export const baseURL = dev
     ? "http://localhost:8080/api/v1"
     : "https://lolgg.herokuapp.com/api/v1";
 
-export const assetsURL = "http://localhost:8080/images/";
+export const assetsURL = dev
+    ? "http://localhost:8080/images/"
+    : "https://lolgg.herokuapp.com/images/";
 export async function getMatchHistoryV1(puuid, start) {
     return await axios
         .post(baseURL + "/matches", {
