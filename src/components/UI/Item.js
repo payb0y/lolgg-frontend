@@ -9,16 +9,8 @@ const Card = styled(Paper)(({ theme }) => ({
     textAlign: "center",
     color: "black ",
 }));
-const Item = ({ children, backgroundColor }) => {
-    return (
-        <Card
-            sx={{
-                backgroundColor: backgroundColor,
-            }}
-        >
-            {children}
-        </Card>
-    );
+const Item = ({ children, backgroundColor, sx }) => {
+    return <Card sx={sx}>{children}</Card>;
 };
 
 export default Item;

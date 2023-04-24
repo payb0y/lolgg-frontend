@@ -5,9 +5,9 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import MatchOverview from "./MatchOverview";
-import MatchItemsOrder from "./MatchItemsOrder";
+import MatchItemsOrder from "./matchBuild/MatchItemsOrder";
 
-import MatchBuild from "./MatchBuild";
+import MatchBuild from "./matchBuild/MatchBuild";
 
 const MatchStats = ({ match, summoner }) => {
     const [value, setValue] = React.useState("1");
@@ -35,7 +35,7 @@ const MatchStats = ({ match, summoner }) => {
                         centered
                     >
                         <Tab label="Overview" value="1" />
-                        <Tab label="Runes" value="2" />
+                        <Tab label="Stats" value="2" />
                         <Tab label="Build" value="3" />
                     </TabList>
                 </Box>
@@ -43,10 +43,10 @@ const MatchStats = ({ match, summoner }) => {
                     <MatchOverview match={match} />
                 </TabPanel>
                 <TabPanel value="2">
-                    <MatchItemsOrder
+                    {/* <MatchItemsOrder
                         match={match.info}
                         participant={summoner}
-                    />
+                    /> */}
                 </TabPanel>
                 <TabPanel value="3">
                     <MatchBuild match={match.info} participant={summoner} />

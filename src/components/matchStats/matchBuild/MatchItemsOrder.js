@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { getMatchTimelineV1 } from "../../api/LeagueApi.js";
+import { getMatchTimelineV1 } from "../../../api/LeagueApi.js";
 //import { useState } from "react";
 // import { Items } from "../../store/Items";
 // import { Stack } from "@mui/material";

@@ -1,8 +1,8 @@
 import React from "react";
 import { Divider, Stack } from "@mui/material";
-import { Runes } from "../../store/Runes.js";
-import Rune from "../parts/Rune.js";
-import Item from "../UI/Item.js";
+import { Runes } from "../../../store/Runes.js";
+import Rune from "../../parts/Rune.js";
+import Item from "../../UI/Item.js";
 
 const MatchRunes = ({ participant }) => {
     const primaryStyle = participant.perks.styles[0].style;
@@ -46,7 +46,11 @@ const MatchRunes = ({ participant }) => {
             justifyContent="center"
             alignItems="center"
         >
-            <Item backgroundColor={"rgba(128, 128, 128, 0.3)"}>
+            <Item
+                sx={{
+                    backgroundColor: "rgba(128, 128, 128, 0.3)",
+                }}
+            >
                 <Stack
                     direction="row"
                     spacing={2}

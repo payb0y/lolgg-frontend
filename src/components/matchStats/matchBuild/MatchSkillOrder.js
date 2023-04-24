@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getMatchTimelineV1, getChampionJsonV1 } from "../../api/LeagueApi";
+import { getMatchTimelineV1, getChampionJsonV1 } from "../../../api/LeagueApi";
 import Stack from "@mui/material/Stack";
-import Item from "../UI/Item";
+import Item from "../../UI/Item";
 
 const MatchSkillOrder = ({ match, championName, participantId }) => {
     const [timeline, setTimeline] = useState(null);
@@ -62,7 +62,11 @@ const MatchSkillOrder = ({ match, championName, participantId }) => {
         timeline();
     }, [match.gameId, match.platformId, participantId]);
     return (
-        <Item backgroundColor={"rgba(128, 128, 128, 0.3)"}>
+        <Item
+            sx={{
+                backgroundColor: "rgba(128, 128, 128, 0.3)",
+            }}
+        >
             {championSkillsIcons && (
                 <Stack spacing={0.5}>
                     {championSkillsIcons.map((skill, index) => (

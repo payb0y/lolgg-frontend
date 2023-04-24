@@ -1,17 +1,8 @@
 import React from "react";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import MatchSkillOrder from "./MatchSkillOrder.js";
 import MatchRunes from "./MatchRunes.js";
-
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: "white",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: "black ",
-}));
+import Item from "../../UI/Item.js";
 
 const MatchBuild = ({ participant, match }) => {
     return (
