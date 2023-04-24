@@ -62,7 +62,6 @@ const TooltipLeague = ({ children, content }) => {
             });
         }
     }
-
     const flavorMatches = content?.description.match(flavorPattern);
     let flavorText = "";
     if (flavorMatches) {
