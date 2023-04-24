@@ -32,6 +32,7 @@ const LiveMatch = ({ setLiveMatchVisible }) => {
                 summonerData?.id,
                 "EUW"
             ).catch(() => {
+                console.log("No live match found");
                 // message.info({
                 //     type: "warning",
                 //     content: "No live match found",
@@ -46,6 +47,8 @@ const LiveMatch = ({ setLiveMatchVisible }) => {
             if (liveMatchResponse?.status === 200) {
                 setLiveMatch(liveMatchResponse.data);
                 setOpen(true);
+            } else {
+                setLiveMatchVisible(false);
             }
         };
         fetchLiveMatch();

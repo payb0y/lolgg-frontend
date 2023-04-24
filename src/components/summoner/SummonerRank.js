@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { Stack, Card } from "@mui/material";
-import { baseURL, getSummonerLeagueV1 } from "../../api/LeagueApi";
+import { getSummonerLeagueV1 } from "../../api/LeagueApi";
 import { SummonerContext } from "../../store/SummonerContext";
+import Rank from "../parts/Rank";
 const SummonerRank = () => {
     const { summonerData } = useContext(SummonerContext);
     const [summonerLeague, setSummonerLeague] = useState([]);
@@ -38,17 +39,7 @@ const SummonerRank = () => {
                                     ? "SOLO QUEUE"
                                     : "TFT"}
                             </span>
-
-                            <img
-                                src={
-                                    baseURL +
-                                    "/assets/summonerRankIcon?icon=" +
-                                    league.tier
-                                }
-                                alt="rank"
-                                height={120}
-                            />
-
+                            <Rank name={league.tier} height={120} />
                             <span>
                                 {league.tier} {league.rank}
                             </span>

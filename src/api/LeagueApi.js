@@ -3,6 +3,8 @@ const dev = false;
 export const baseURL = dev
     ? "http://localhost:8080/api/v1"
     : "https://lolgg.herokuapp.com/api/v1";
+
+export const assetsURL = "http://localhost:8080/images/";
 export async function getMatchHistoryV1(puuid, start) {
     return await axios
         .post(baseURL + "/matches", {
@@ -75,27 +77,6 @@ export async function getMatchTimelineV1(matchId, region) {
             matchId: matchId,
             region: region,
         })
-        .then((res) => {
-            return res;
-        })
-        .catch((error) => {
-            return error.response.data;
-        });
-}
-export async function getChampionJsonV1(championName) {
-    return await axios
-        .get(baseURL + "/assets/champion?championName=" + championName)
-        .then((res) => {
-            return res;
-        })
-        .catch((error) => {
-            return error.response.data;
-        });
-}
-
-export async function getRunes() {
-    return await axios
-        .get(baseURL + "/assets/runes")
         .then((res) => {
             return res;
         })

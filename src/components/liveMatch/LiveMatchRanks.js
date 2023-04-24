@@ -5,6 +5,7 @@ import { styled } from "@mui/material/styles";
 import { useState, useEffect } from "react";
 import { getSummonerLeagueV1 } from "../../api/LeagueApi";
 import CircularProgress from "@mui/material/CircularProgress";
+import Rank from "../parts/Rank";
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: "#1A2027",
@@ -51,11 +52,7 @@ const LiveMatchRanks = ({ participant }) => {
                         alignItems="center"
                         justifyContent="center"
                     >
-                        <img
-                            src={`https://opgg-static.akamaized.net/images/medals_new/${soloDuoRank.tier}.png?image=q_auto,f_webp,w_144&v=1681446769920`}
-                            alt="rank"
-                            height={30}
-                        />
+                        <Rank name={soloDuoRank.tier} height={30} />
                         <span>{soloDuoRank.tier} </span>
                         <span>{soloDuoRank.rank}</span>
                         <span>({soloDuoRank.leaguePoints}LP)</span>

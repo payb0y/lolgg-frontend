@@ -87,6 +87,7 @@ const MatchOverview = ({ match }) => {
             redRows.push(rows(participant));
         }
     });
+
     const statTable = (tRow, team) => {
         return (
             <TableContainer component={Paper}>

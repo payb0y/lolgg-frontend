@@ -1,17 +1,17 @@
 import React from "react";
 import { Stack } from "@mui/material";
-import { Champions } from "../../store/Champions";
 import LiveMatchRunes from "./LiveMatchRunes";
 import Champion from "../parts/Champion";
 import Spell from "../parts/Spell";
+import champions from "../../data/champions.json";
 
 const LiveMatchChampion = ({ participant }) => {
     const { championId, spell1Id, spell2Id } = participant;
     const summoners = [spell1Id, spell2Id];
     let champName;
-    for (var key in Champions.data) {
-        if (Champions.data[key].key === championId.toString()) {
-            champName = Champions.data[key].id;
+    for (var key in champions.data) {
+        if (champions.data[key].key === championId.toString()) {
+            champName = champions.data[key].id;
         }
     }
     return (

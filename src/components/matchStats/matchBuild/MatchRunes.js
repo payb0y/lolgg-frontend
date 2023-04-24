@@ -1,14 +1,14 @@
 import React from "react";
 import { Divider, Stack } from "@mui/material";
-import { Runes } from "../../../store/Runes.js";
 import Rune from "../../parts/Rune.js";
 import Item from "../../UI/Item.js";
+import runes from "../../../data/runes.json";
 
 const MatchRunes = ({ participant }) => {
     const primaryStyle = participant.perks.styles[0].style;
     const secondaryStyle = participant.perks.styles[1].style;
-    const primaryStyleName = Runes.find((rune) => rune.id === primaryStyle);
-    const secondaryStyleName = Runes.find((rune) => rune.id === secondaryStyle);
+    const primaryStyleName = runes.find((rune) => rune.id === primaryStyle);
+    const secondaryStyleName = runes.find((rune) => rune.id === secondaryStyle);
     let primaryRunesNames = [];
     let secondaryRunesNames = [];
     let statPerksIcons = [];

@@ -1,10 +1,10 @@
-import { baseURL } from "../../api/LeagueApi";
+import { assetsURL } from "../../api/LeagueApi";
 
 const Champion = ({ championName, width, height, style }) => {
     if (championName === "FiddleSticks") championName = "Fiddlesticks";
     return (
         <img
-            src={baseURL + "/assets/championIcon?icon=" + championName}
+            src={assetsURL + "champion/" + championName + ".png"}
             alt={championName}
             width={width}
             height={height}

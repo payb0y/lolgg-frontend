@@ -1,86 +1,63 @@
 import { useEffect } from "react";
 import { getMatchTimelineV1 } from "../../../api/LeagueApi.js";
-//import { useState } from "react";
-// import { Items } from "../../store/Items";
-// import { Stack } from "@mui/material";
-// import Item from "../parts/Item.js";
-// import { ddragon } from "../../api/Request.js";
+import { useState } from "react";
+import { baseURL } from "../../../api/LeagueApi.js";
+import { Items } from "../../../store/Items";
+import Item from "../../parts/Item";
 
-const MatchItemsOrder = ({ match }) => {
-    //const [timeline, setTimeline] = useState(null);
+const MatchItemsOrder = ({ match, participantId }) => {
+    const [timeline, setTimeline] = useState(null);
     useEffect(() => {
         const getTimeline = async () => {
             const t = await getMatchTimelineV1(
-                match.platformId + "_" + match.gameId
+                match.platformId + "_" + match.gameId,
+                "EUW"
             );
-            console.log(t);
-            //setTimeline(t);
+            const frames = t.data.info.frames.map((frame) =>
+                frame.events.map((event) => event)
+            );
+            const filtered = frames
+                .map((frame) =>
+                    frame.filter(
+                        (event) =>
+                            event.type.includes("ITEM") &&
+                            event.participantId === participantId
+                    )
+                )
+                .filter((frame) => frame.length > 0);
+            //console.log(filtered);
+            setTimeline(filtered);
         };
         getTimeline();
-    }, [match.gameId, match.platformId]);
+    }, [match.gameId, match.platformId, participantId]);
 
-    // const getItemsPurchased = (participantId) => {
-    //     //filter items purchased
-    //     console.log(timeline);
-    //     // timeline.data.info.frames.forEach((frame) => {
-    //     //     frame.events.forEach((event) => {
-    //     //         if (event.type.includes("ITEM")) {
-    //     //             if (event.participantId === participantId) {
-    //     //                 items.push({
-    //     //                     item: Items.data[event.itemId],
-    //     //                     time: event.timestamp,
-    //     //                     type: event.type,
-    //     //                 });
-    //     //             }
-    //     //         }
-    //     //     });
-    //     // });
-    //     // participantItems = fixItems(items);
-    // };
-    //timeline && getItemsPurchased(1);
-    // const fixItems = (items) => {
-    //     let timelines = [];
-    //     let itemsFixed = [];
-    //     items.forEach((item) => {
-    //         timelines.push(item.time);
-    //     });
-    //     timelines = [...new Set(timelines)];
-    //     timelines.forEach((timeline) => {
-    //         let temp = [];
-    //         items.forEach((item) => {
-    //             if (item.time === timeline) {
-    //                 temp.push(item);
-    //             }
-    //         });
-    //         itemsFixed.push(temp);
-    //     });
-    //     return itemsFixed;
-    // };
-    // timeline && getItemsPurchased(participantId);
-    // console.log(participantItems);
-    // return (
-    //     // <>
-    //     //     {participantItems && (
-    //     //         <Stack direction="row" spacing={1}>
-    //     //             {participantItems.map((item) => (
-    //     //                 <Stack direction="row" spacing={0}>
-    //     //                     {item
-    //     //                         .filter((i) => i.type === "ITEM_PURCHASED")
-    //     //                         .map((i) => (
-    //     //                             <Item
-    //     //                                 item={i.item}
-    //     //                                 content={i.item}
-    //     //                                 src={`${ddragon}/item/${i.item.image.full}`}
-    //     //                                 width={20}
-    //     //                                 height={20}
-    //     //                             />
-    //     //                         ))}
-    //     //                 </Stack>
-    //     //             ))}
-    //     //         </Stack>
-    //     //     )}
-    //     // </>
-    // );
+    return (
+        <>
+            {timeline &&
+                timeline.map((event) => {
+                    return event.map((e, index) => {
+                        console.log(e);
+                        const item = Items.data[e.itemId];
+                        //console.log(item);
+                        return (
+                            <Item
+                                alt={"item"}
+                                src={
+                                    baseURL +
+                                    "/assets/itemIcon?icon=" +
+                                    e.itemId
+                                }
+                                width={30}
+                                height={30}
+                                content={item}
+                                item={item}
+                                key={index}
+                            />
+                        );
+                    });
+                })}
+        </>
+    );
 };
 
 export default MatchItemsOrder;

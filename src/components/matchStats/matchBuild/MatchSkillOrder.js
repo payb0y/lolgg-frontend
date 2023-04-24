@@ -1,66 +1,44 @@
-import { useEffect, useState } from "react";
-import { getMatchTimelineV1, getChampionJsonV1 } from "../../../api/LeagueApi";
 import Stack from "@mui/material/Stack";
 import Item from "../../UI/Item";
+import champions from "../../../data/champions.json";
+const MatchSkillOrder = ({ championName, participantId, timeline }) => {
+    const championSkillsIcons = [
+        {
+            icon: `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/spell/${champions.data[championName].spells[0].image.full}`,
+            key: "Q",
+        },
+        {
+            icon: `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/spell/${champions.data[championName].spells[1].image.full}`,
+            key: "W",
+        },
+        {
+            icon: `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/spell/${champions.data[championName].spells[2].image.full}`,
+            key: "E",
+        },
+        {
+            icon: `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/spell/${champions.data[championName].spells[3].image.full}`,
+            key: "R",
+        },
+    ];
 
-const MatchSkillOrder = ({ match, championName, participantId }) => {
-    const [timeline, setTimeline] = useState(null);
-    const [championSkillsIcons, setChampionSkillsIcons] = useState(null);
-    useEffect(() => {
-        const skillIcons = async () => {
-            const c = await getChampionJsonV1(championName);
-            setChampionSkillsIcons([
-                {
-                    icon: `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/spell/${c.data.data[championName].spells[0].image.full}`,
-                    key: "Q",
-                },
-                {
-                    icon: `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/spell/${c.data.data[championName].spells[1].image.full}`,
-                    key: "W",
-                },
-                {
-                    icon: `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/spell/${c.data.data[championName].spells[2].image.full}`,
-                    key: "E",
-                },
-                {
-                    icon: `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/spell/${c.data.data[championName].spells[3].image.full}`,
-                    key: "R",
-                },
-            ]);
-        };
-        skillIcons();
-    }, [championName]);
-    useEffect(() => {
-        const timeline = async () => {
-            const t = await getMatchTimelineV1(
-                match.platformId + "_" + match.gameId,
-                "EUW"
-            );
-            const frames = t.data.info.frames.map((frame) =>
-                frame.events.map((event) => event)
-            );
-            const filtered = frames
-                .map((frame) =>
-                    frame.filter(
-                        (event) =>
-                            event.type.includes("SKILL_LEVEL_UP") &&
-                            event.participantId === participantId
-                    )
-                )
-                .filter((frame) => frame.length > 0)
-                .map((frame) => frame[0]);
-            if (filtered.length < 17) {
-                for (let i = filtered.length; i < 17; i++) {
-                    filtered.push({
-                        skillSlot: 0,
-                        timestamp: 0,
-                    });
-                }
-            }
-            setTimeline(filtered);
-        };
-        timeline();
-    }, [match.gameId, match.platformId, participantId]);
+    const filtered = timeline
+        .map((frame) =>
+            frame.filter(
+                (event) =>
+                    event.type.includes("SKILL_LEVEL_UP") &&
+                    event.participantId === participantId
+            )
+        )
+        .filter((frame) => frame.length > 0)
+        .map((frame) => frame[0]);
+    if (filtered.length < 17) {
+        for (let i = filtered.length; i < 17; i++) {
+            filtered.push({
+                skillSlot: 0,
+                timestamp: 0,
+            });
+        }
+    }
     return (
         <Item
             sx={{
@@ -99,8 +77,8 @@ const MatchSkillOrder = ({ match, championName, participantId }) => {
                                     borderRadius: "20%",
                                 }}
                             />
-                            {timeline &&
-                                timeline.map((skill, i) => (
+                            {filtered &&
+                                filtered.map((skill, i) => (
                                     <div
                                         key={i}
                                         style={{

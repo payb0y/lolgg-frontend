@@ -2,8 +2,8 @@ import React from "react";
 import { Stack } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-import { Champions } from "../../store/Champions";
 import Champion from "../parts/Champion";
+import champions from "../../data/champions.json";
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: "white",
@@ -18,9 +18,9 @@ const LiveMatchBanned = ({ match }) => {
     //get champion name
     let champNames = [];
     bannedChampions.forEach((champion) => {
-        for (var key in Champions.data) {
-            if (Champions.data[key].key === champion.championId.toString()) {
-                champNames.push(Champions.data[key].id);
+        for (var key in champions.data) {
+            if (champions.data[key].key === champion.championId.toString()) {
+                champNames.push(champions.data[key].id);
             }
         }
     });
@@ -44,7 +44,7 @@ const LiveMatchBanned = ({ match }) => {
                     >
                         {redTeamBans.map((champName) => (
                             <Champion
-                                name={champName}
+                                championName={champName}
                                 width="30px"
                                 height="30px"
                                 style={{ borderRadius: "10%" }}
@@ -61,7 +61,7 @@ const LiveMatchBanned = ({ match }) => {
                     >
                         {blueTeamBans.map((champName) => (
                             <Champion
-                                name={champName}
+                                championName={champName}
                                 width="30px"
                                 height="30px"
                                 style={{ borderRadius: "10%" }}

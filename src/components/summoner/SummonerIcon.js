@@ -1,14 +1,13 @@
-import { baseURL } from "../../api/LeagueApi";
-
 const SummonerIcon = ({ summoner, width, height }) => {
     return (
         <div className="summoner-icon">
             <img
                 src={
-                    baseURL +
-                    "/assets/profileIcon?icon=" +
-                    summoner.profileIconId
+                    "https://ddragon.leagueoflegends.com/cdn/13.8.1/img/profileicon/" +
+                    summoner.profileIconId +
+                    ".png"
                 }
+                //https://ddragon.leagueoflegends.com/cdn/{version}/img/profileicon/{profileIconId}.png
                 alt="profile icon"
                 width={width}
                 height={height}

@@ -1,12 +1,8 @@
-import { Items } from "../../store/Items";
-import Item from "../parts/Item";
 import { Stack } from "@mui/material";
-import { baseURL } from "../../api/LeagueApi";
+import Item from "../parts/Item";
 const MatchItems = ({ participant, height, width }) => {
     const { item0, item1, item2, item3, item4, item5, item6 } = participant;
     const items = [item0, item1, item2, item3, item4, item5, item6];
-    const itemsName = items.map((item) => Items.data[item]);
-
     return (
         <Stack
             direction="row"
@@ -15,15 +11,7 @@ const MatchItems = ({ participant, height, width }) => {
             alignItems="center"
         >
             {items.map((item, index) => (
-                <Item
-                    alt={"item"}
-                    src={baseURL + "/assets/itemIcon?icon=" + item}
-                    width={width}
-                    height={height}
-                    content={itemsName[index]}
-                    item={item}
-                    key={index}
-                />
+                <Item item={item} width={width} height={height} key={index} />
             ))}
         </Stack>
     );

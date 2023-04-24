@@ -18,19 +18,8 @@ const HtmlTooltip = styled(({ className, ...props }) => (
         fontSize: theme.typography.pxToRem(13),
     },
 }));
-const Item = ({ item, src, alt, width, height, content }) => {
-    if (item === 0) {
-        return (
-            <div
-                style={{
-                    width: width,
-                    height: height,
-                    backgroundColor: "rgb(39, 38, 38, 0.2)",
-                }}
-                key={shortid.generate()}
-            ></div>
-        );
-    }
+
+const TooltipLeague = ({ children, content }) => {
     const attentionPattern = /<attention>(\d+)<\/attention>/g;
     const attentionDetailPattern = /<\/attention>(.*?)<br>/g;
     const passivePattern = /<passive>(.*?)<\/passive>/g;
@@ -174,9 +163,9 @@ const Item = ({ item, src, alt, width, height, content }) => {
                 </React.Fragment>
             }
         >
-            <img src={src} alt={alt} width={width} height={height} />
+            {children}
         </HtmlTooltip>
     );
 };
 
-export default Item;
+export default TooltipLeague;

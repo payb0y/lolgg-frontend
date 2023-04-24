@@ -1,12 +1,12 @@
 import React from "react";
 import { Stack } from "@mui/material";
-import { Runes } from "../../store/Runes";
+import runes from "../../data/runes.json";
 import Rune from "../parts/Rune";
 
 const LiveMatchRunes = ({ perks }) => {
     const { perkIds, perkStyle, perkSubStyle } = perks;
-    const primaryStyle = Runes.find((rune) => rune.id === perkStyle);
-    const secondaryStyle = Runes.find((rune) => rune.id === perkSubStyle);
+    const primaryStyle = runes.find((rune) => rune.id === perkStyle);
+    const secondaryStyle = runes.find((rune) => rune.id === perkSubStyle);
     const primaryRuneIcons = [];
     const secondaryRuneIcons = [];
 

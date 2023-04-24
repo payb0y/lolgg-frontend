@@ -16,7 +16,6 @@ const Item = styled(Paper)(({ theme }) => ({
     color: "black ",
 }));
 const LiveMatchDetails = ({ liveMatch }) => {
-    console.log(liveMatch);
     const [time, setTime] = useState(
         `${Math.floor((Date.now() - liveMatch.gameStartTime) / 60000)}:${
             Math.floor((Date.now() - liveMatch.gameStartTime) / 1000) % 60
