@@ -14,7 +14,7 @@ const Profile = () => {
         setSummonerData(null);
         const fetchSummonerData = async (summonerName) => {
             const summonerResponse = await getUserV1(summonerName, "EUW");
-            if (summonerResponse.status === 200) {
+            if (summonerResponse.status === 200 && summonerResponse) {
                 setSummonerData(summonerResponse.data);
             }
         };
