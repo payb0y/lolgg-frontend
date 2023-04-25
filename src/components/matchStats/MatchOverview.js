@@ -16,6 +16,7 @@ import MatchKda from "../match/MatchKda";
 import LiveMatchRanks from "../liveMatch/LiveMatchRanks";
 
 const MatchOverview = ({ match }) => {
+    console.log(match);
     const createData = (
         summoner,
         kda,
@@ -68,7 +69,7 @@ const MatchOverview = ({ match }) => {
             </Stack>,
             <MatchKda participant={participant} />,
             <MatchItems participant={participant} width={25} height={25} />,
-            participant.totalMinionsKilled,
+            participant.totalMinionsKilled + participant.neutralMinionsKilled,
             participant.totalDamageDealtToChampions,
             participant.totalDamageTaken,
             <LiveMatchRanks participant={participant} />

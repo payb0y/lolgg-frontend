@@ -67,7 +67,7 @@ const Match = (props) => {
                             />
                         </Stack>
                         <MatchKda participant={participantData} />
-                        <MatchMinions participant={participantData} />
+                        {/* <MatchMinions participant={participantData} /> */}
                     </Stack>
                     <Stack
                         justifyContent="center"

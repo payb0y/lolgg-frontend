@@ -10,7 +10,9 @@ const MatchMinions = ({ participant }) => {
                 fontSize: 12,
             }}
         >
-            <span>CS {totalMinionsKilled}</span>
+            <span>
+                CS {totalMinionsKilled + participant.neutralMinionsKilled}
+            </span>
             <span>Control Ward {visionWardsBoughtInGame}</span>
         </Stack>
     );
