@@ -16,8 +16,11 @@ import MatchKda from "../match/MatchKda";
 import LiveMatchRanks from "../liveMatch/LiveMatchRanks";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useNavigate } from "react-router-dom";
 
 const MatchOverview = ({ match }) => {
+    const navigate = useNavigate();
+
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     const createData = (
@@ -43,6 +46,10 @@ const MatchOverview = ({ match }) => {
     let maxDamageTaken = 0;
     const redRows = [];
     const blueRows = [];
+    const handleSummoner = (value) => {
+        console.log(value.target.textContent);
+        //navigate(`/profile/${value.target.textContent}`);
+    };
     const rows = (participant) => {
         return createData(
             <Stack alignItems="center" justifyContent="center" spacing={0}>
@@ -105,13 +112,15 @@ const MatchOverview = ({ match }) => {
                             <TableCell align="left">{team}</TableCell>
                             <TableCell align="center">KDA</TableCell>
                             <TableCell align="center">Items</TableCell>
-                            {!isMobile ?? (
-                                <>
-                                    <TableCell align="center">CS</TableCell>
-                                    <TableCell align="center">Damage</TableCell>
-                                    <TableCell align="center">Rank</TableCell>
-                                </>
-                            )}
+                            {!isMobile ? (
+                                <TableCell align="center">CS</TableCell>
+                            ) : null}
+                            {!isMobile ? (
+                                <TableCell align="center">Damage</TableCell>
+                            ) : null}
+                            {!isMobile ? (
+                                <TableCell align="center">Rank</TableCell>
+                            ) : null}
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -125,7 +134,9 @@ const MatchOverview = ({ match }) => {
                                 }}
                             >
                                 <TableCell padding="none" align="left">
-                                    {row.summoner}
+                                    <span onClick={handleSummoner}>
+                                        {row.summoner}
+                                    </span>
                                 </TableCell>
                                 <TableCell padding="none" align="center">
                                     {row.kda}
@@ -133,19 +144,21 @@ const MatchOverview = ({ match }) => {
                                 <TableCell padding="none" align="center">
                                     {row.items}
                                 </TableCell>
-                                {!isMobile ?? (
-                                    <>
-                                        <TableCell align="center">
-                                            {row.cs}
-                                        </TableCell>
-                                        <TableCell align="center">
-                                            {row.damageDealt}
-                                        </TableCell>
-                                        <TableCell align="center">
-                                            {row.rank}
-                                        </TableCell>
-                                    </>
-                                )}
+                                {!isMobile ? (
+                                    <TableCell align="center">
+                                        {row.cs}
+                                    </TableCell>
+                                ) : null}
+                                {!isMobile ? (
+                                    <TableCell align="center">
+                                        {row.damageDealt}
+                                    </TableCell>
+                                ) : null}
+                                {!isMobile ? (
+                                    <TableCell align="center">
+                                        {row.rank}
+                                    </TableCell>
+                                ) : null}
                             </TableRow>
                         ))}
                     </TableBody>
