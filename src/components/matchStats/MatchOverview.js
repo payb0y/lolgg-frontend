@@ -127,8 +127,10 @@ const MatchOverview = ({ match }) => {
                                 <TableCell padding="none" align="left">
                                     {row.summoner}
                                 </TableCell>
-                                <TableCell align="center">{row.kda}</TableCell>
-                                <TableCell align="center">
+                                <TableCell padding="none" align="center">
+                                    {row.kda}
+                                </TableCell>
+                                <TableCell padding="none" align="center">
                                     {row.items}
                                 </TableCell>
                                 {!isMobile ?? (
