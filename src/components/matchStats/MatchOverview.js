@@ -20,7 +20,6 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 const MatchOverview = ({ match }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-    console.log(match);
     const createData = (
         summoner,
         kda,
