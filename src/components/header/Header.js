@@ -13,8 +13,7 @@ const Header = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                marginTop: "20px",
-                minWidth: "800px",
+                margin: "20px 0",
             }}
         >
             <TextField

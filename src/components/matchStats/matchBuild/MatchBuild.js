@@ -5,9 +5,13 @@ import Item from "../../UI/Item.js";
 import { useState, useEffect } from "react";
 import { getMatchTimelineV1 } from "../../../api/LeagueApi";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const MatchBuild = ({ participant, match }) => {
     const [timeline, setTimeline] = useState(null);
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
     useEffect(() => {
         const timeline = async () => {
@@ -32,7 +36,7 @@ const MatchBuild = ({ participant, match }) => {
             <Stack
                 alignItems="center"
                 justifyContent="center"
-                direction="row"
+                direction={isMobile ? "column" : "row"}
                 spacing={5}
             >
                 {timeline ? (

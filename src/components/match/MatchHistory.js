@@ -38,13 +38,12 @@ const MatchHistory = (props) => {
         setStart(start + 5);
     };
     return (
-        <Stack spacing={1}>
+        <Stack>
             <Card
                 sx={{
                     justifyContent: "center",
                     alignItems: "center",
-                    padding: "10px",
-                    minWidth: "800px",
+                    width: "100%",
                 }}
             >
                 {matchHistory &&

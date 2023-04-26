@@ -14,8 +14,12 @@ import MatchSpells from "../match/MatchSpells";
 import MatchRunes from "../match/MatchRunes";
 import MatchKda from "../match/MatchKda";
 import LiveMatchRanks from "../liveMatch/LiveMatchRanks";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const MatchOverview = ({ match }) => {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     console.log(match);
     const createData = (
         summoner,
@@ -94,7 +98,7 @@ const MatchOverview = ({ match }) => {
             <TableContainer component={Paper}>
                 <Table
                     size="small"
-                    sx={{ minWidth: 500 }}
+                    sx={{ minWidth: isMobile ? "" : 500 }}
                     aria-label="simple table"
                 >
                     <TableHead>
@@ -102,9 +106,13 @@ const MatchOverview = ({ match }) => {
                             <TableCell align="left">{team}</TableCell>
                             <TableCell align="center">KDA</TableCell>
                             <TableCell align="center">Items</TableCell>
-                            <TableCell align="center">CS</TableCell>
-                            <TableCell align="center">Damage</TableCell>
-                            <TableCell align="center">Rank</TableCell>
+                            {!isMobile ?? (
+                                <>
+                                    <TableCell align="center">CS</TableCell>
+                                    <TableCell align="center">Damage</TableCell>
+                                    <TableCell align="center">Rank</TableCell>
+                                </>
+                            )}
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -124,11 +132,19 @@ const MatchOverview = ({ match }) => {
                                 <TableCell align="center">
                                     {row.items}
                                 </TableCell>
-                                <TableCell align="center">{row.cs}</TableCell>
-                                <TableCell align="center">
-                                    {row.damageDealt}
-                                </TableCell>
-                                <TableCell align="center">{row.rank}</TableCell>
+                                {!isMobile ?? (
+                                    <>
+                                        <TableCell align="center">
+                                            {row.cs}
+                                        </TableCell>
+                                        <TableCell align="center">
+                                            {row.damageDealt}
+                                        </TableCell>
+                                        <TableCell align="center">
+                                            {row.rank}
+                                        </TableCell>
+                                    </>
+                                )}
                             </TableRow>
                         ))}
                     </TableBody>

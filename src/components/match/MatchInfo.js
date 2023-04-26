@@ -2,8 +2,14 @@ import { useContext } from "react";
 import { SummonerContext } from "../../store/SummonerContext";
 import { Stack } from "@mui/material";
 import { getGameType } from "../utils/Utils";
+import { useTheme } from "@mui/material/styles";
+
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const MatchInfo = (props) => {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
     const { summonerData } = useContext(SummonerContext);
     const { gameDuration, gameEndTimestamp, queueId } = props.match.info;
     const getGameDate = () => {
@@ -52,14 +58,15 @@ const MatchInfo = (props) => {
             alignItems="center"
             spacing={0.5}
             sx={{
-                width: "115px",
+                width: isMobile ? "80px" : "115px",
+                fontSize: isMobile ? "13px" : "14px",
             }}
         >
-            <div className="game-type">{mode}</div>
-            <div className="game-date">{gameDate}</div>
+            <div style={{ fontWeight: "bold" }}>{mode}</div>
+            <div className="">{gameDate}</div>
             <div className="bar"></div>
-            <div className="game-result">{gameResult}</div>
-            <div className="game-duration">{duration}</div>
+            <div className="">{gameResult}</div>
+            <div className="">{duration}</div>
         </Stack>
     );
 };

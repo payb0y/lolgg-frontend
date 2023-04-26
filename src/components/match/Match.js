@@ -14,6 +14,9 @@ import MatchSpells from "./MatchSpells";
 import MatchRunes from "./MatchRunes";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 const Match = (props) => {
     const { summonerData } = useContext(SummonerContext);
     const [isDetailsOpen, setIsDetailsOpen] = useState(false);
@@ -24,22 +27,24 @@ const Match = (props) => {
     const handleDetailsClick = () => {
         setIsDetailsOpen(!isDetailsOpen);
     };
+
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     return (
-        <Box
-            sx={{
-                backgroundColor: participantData.win
-                    ? "rgba(83, 131, 232, 0.9)"
-                    : "rgba(232, 64, 87, 0.9)",
-                borderRadius: 1,
-                p: 1,
-                m: 1,
-            }}
-        >
+        <>
             <Stack
                 justifyContent="flex-start"
                 alignItems="center"
                 direction="row"
-                spacing={4}
+                spacing={isMobile ? 1 : 4}
+                sx={{
+                    backgroundColor: participantData.win
+                        ? "rgba(83, 131, 232, 0.9)"
+                        : "rgba(232, 64, 87, 0.9)",
+                    borderRadius: 1,
+                    p: 1,
+                    m: 1,
+                }}
             >
                 <MatchInfo match={match} />
                 <Stack>
@@ -72,7 +77,7 @@ const Match = (props) => {
                     <Stack
                         justifyContent="center"
                         alignItems="center"
-                        direction="row"
+                        direction={isMobile ? "column" : "row"}
                         spacing={2}
                     >
                         <MatchItems
@@ -83,7 +88,12 @@ const Match = (props) => {
                         <MatchKills participant={participantData} />
                     </Stack>
                 </Stack>
-                <MatchParticipants match={match} summoner={participantData} />
+                {isMobile ? null : (
+                    <MatchParticipants
+                        match={match}
+                        summoner={participantData}
+                    />
+                )}
                 <div
                     onClick={handleDetailsClick}
                     className="expand-div"
@@ -99,7 +109,7 @@ const Match = (props) => {
             {isDetailsOpen && (
                 <MatchStats match={match} summoner={participantData} />
             )}
-        </Box>
+        </>
     );
 };
 

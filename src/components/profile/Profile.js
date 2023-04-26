@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getUserV1 } from "../../api/LeagueApi";
 import { SummonerContext } from "../../store/SummonerContext";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Profile = () => {
     const { summonerName } = useParams();
@@ -20,6 +22,8 @@ const Profile = () => {
         };
         fetchSummonerData(summonerName);
     }, [summonerName]);
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     return (
         <SummonerContext.Provider value={{ summonerData }}>
             {summonerData && (
@@ -31,18 +35,18 @@ const Profile = () => {
                         md: "center",
                         lg: "flex-start",
                     }}
-                    p={2}
+                    p={isMobile ? 0 : 2}
                     direction={{
                         xs: "column",
                         md: "column",
                         lg: "row",
                     }}
-                    minWidth="800px"
+                    minWidth={{ xs: "100%", md: "800px", lg: "800px" }}
                 >
                     <Stack
                         spacing={2}
                         direction={{
-                            xs: "row",
+                            xs: "column",
                             md: "row",
                             lg: "column",
                         }}
