@@ -25,6 +25,7 @@ const RuneTooltip = ({ rune, children }) => {
     });
     return (
         <HtmlTooltip
+            disableFocusListener
             arrow
             placement="top"
             title={

@@ -99,6 +99,7 @@ const TooltipLeague = ({ children, content }) => {
     }
     return (
         <HtmlTooltip
+            disableFocusListener
             arrow
             key={shortid.generate()}
             title={

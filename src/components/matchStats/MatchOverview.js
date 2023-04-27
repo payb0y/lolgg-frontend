@@ -18,6 +18,8 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useNavigate } from "react-router-dom";
 
+import ProgressBar from "../UI/ProgressBar";
+
 const MatchOverview = ({ match }) => {
     const navigate = useNavigate();
     const summonerClickHandler = (value) => {
@@ -45,7 +47,6 @@ const MatchOverview = ({ match }) => {
         };
     };
     let maxDamage = 0;
-    let maxDamageTaken = 0;
     const redRows = [];
     const blueRows = [];
     const rows = (participant) => {
@@ -93,9 +94,6 @@ const MatchOverview = ({ match }) => {
     match.info.participants.forEach((participant) => {
         if (participant.totalDamageDealtToChampions > maxDamage) {
             maxDamage = participant.totalDamageDealtToChampions;
-        }
-        if (participant.totalDamageTaken > maxDamageTaken) {
-            maxDamageTaken = participant.totalDamageTaken;
         }
         if (participant.teamId === 100) {
             blueRows.push(rows(participant));
@@ -155,6 +153,10 @@ const MatchOverview = ({ match }) => {
                                 {!isMobile ? (
                                     <TableCell align="center">
                                         {row.damageDealt}
+                                        <ProgressBar
+                                            value={row.damageDealt}
+                                            maxValue={maxDamage}
+                                        />
                                     </TableCell>
                                 ) : null}
                                 {!isMobile ? (

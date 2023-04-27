@@ -21,6 +21,7 @@ const HtmlTooltip = styled(({ className, ...props }) => (
 const SpellTooltip = ({ spell, children }) => {
     return (
         <HtmlTooltip
+            disableFocusListener
             arrow
             placement="top"
             title={

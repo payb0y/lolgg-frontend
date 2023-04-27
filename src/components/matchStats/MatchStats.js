@@ -8,6 +8,7 @@ import MatchOverview from "./MatchOverview";
 
 import MatchBuild from "./matchBuild/MatchBuild";
 import MatchTimeline from "./MatchTimeline";
+import MatchGraph from "./MatchGraph";
 
 const MatchStats = ({ match, summoner }) => {
     const [value, setValue] = React.useState("1");
@@ -43,8 +44,12 @@ const MatchStats = ({ match, summoner }) => {
                     <MatchOverview match={match} />
                 </TabPanel>
                 <TabPanel value="2">
-                    <MatchTimeline
+                    {/* <MatchTimeline
                         match={match.info}
+                        participantId={summoner.participantId}
+                    /> */}
+                    <MatchGraph
+                        participants={match.info.participants}
                         participantId={summoner.participantId}
                     />
                 </TabPanel>
