@@ -7,8 +7,6 @@ import MatchItems from "./MatchItems";
 import MatchParticipants from "./MatchParticipants";
 import MatchKills from "./MatchKills";
 import { Stack } from "@mui/material";
-import Box from "@mui/material/Box";
-import MatchMinions from "./MatchMinions";
 import MatchStats from "../matchStats/MatchStats";
 import MatchSpells from "./MatchSpells";
 import MatchRunes from "./MatchRunes";

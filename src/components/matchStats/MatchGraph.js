@@ -1,9 +1,7 @@
 import { useState } from "react";
-import MatchChampion from "../match/MatchChampion";
 import {
     TableContainer,
     Table,
-    TableHead,
     TableRow,
     TableCell,
     TableBody,

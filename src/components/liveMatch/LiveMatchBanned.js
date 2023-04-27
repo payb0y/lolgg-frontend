@@ -1,7 +1,5 @@
 import React from "react";
 import { Stack } from "@mui/material";
-import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
 import Champion from "../parts/Champion";
 import champions from "../../data/champions.json";
 import CustomPaper from "../UI/CustomPaper";

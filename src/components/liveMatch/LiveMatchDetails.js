@@ -1,6 +1,4 @@
 import { Stack } from "@mui/material";
-import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
 import { useState, useEffect } from "react";
 import { getGameType } from "../utils/Utils";
 import LiveMatchChampion from "./LiveMatchChampion";
@@ -9,13 +7,6 @@ import Box from "@mui/material/Box";
 import LiveMatchBanned from "./LiveMatchBanned";
 import CustomPaper from "../UI/CustomPaper";
 
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: "white",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: "black ",
-}));
 const LiveMatchDetails = ({ liveMatch }) => {
     const [time, setTime] = useState(
         `${Math.floor((Date.now() - liveMatch.gameStartTime) / 60000)}:${

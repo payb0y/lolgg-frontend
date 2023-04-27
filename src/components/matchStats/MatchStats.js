@@ -5,9 +5,7 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import MatchOverview from "./MatchOverview";
-
 import MatchBuild from "./matchBuild/MatchBuild";
-import MatchTimeline from "./MatchTimeline";
 import MatchGraph from "./MatchGraph";
 
 const MatchStats = ({ match, summoner }) => {

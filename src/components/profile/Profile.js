@@ -8,7 +8,6 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import SummonerBanner from "../summoner/SummonerBanner";
 import SummonerRank from "../summoner/SummonerRank";
-import Alert from "@mui/material/Alert";
 const Profile = () => {
     const { summonerName } = useParams();
     const [summonerData, setSummonerData] = useState(null);

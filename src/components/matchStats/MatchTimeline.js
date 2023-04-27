@@ -26,6 +26,7 @@ const MatchTimeline = ({ match, participantId }) => {
         };
         getTimeline();
     }, [match.gameId, match.platformId, participantId]);
+    console.log(timeline);
 };
 
 export default MatchTimeline;
