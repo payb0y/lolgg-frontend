@@ -1,8 +1,8 @@
 import React from "react";
 import { Divider, Stack } from "@mui/material";
 import Rune from "../../parts/Rune.js";
-import Item from "../../UI/Item.js";
 import runes from "../../../data/runes.json";
+import CustomPaper from "../../UI/CustomPaper.js";
 
 const MatchRunes = ({ participant }) => {
     const primaryStyle = participant.perks.styles[0].style;
@@ -46,9 +46,10 @@ const MatchRunes = ({ participant }) => {
             justifyContent="center"
             alignItems="center"
         >
-            <Item
+            <CustomPaper
                 sx={{
                     backgroundColor: "rgba(128, 128, 128, 0.3)",
+                    padding: "10px",
                 }}
             >
                 <Stack
@@ -106,7 +107,7 @@ const MatchRunes = ({ participant }) => {
                         </Stack>
                     </Stack>
                 </Stack>
-            </Item>
+            </CustomPaper>
         </Stack>
     );
 };

@@ -19,17 +19,19 @@ const MatchHistory = (props) => {
                 summonerData.puuid,
                 start
             );
-            const matchIds = await Promise.all(
-                matchHistoryResponse.data.map((matchId) => matchId)
-            );
-            const matchDetailsResponses = await Promise.all(
-                matchIds.map((matchId) => getMatchDetailsV1(matchId, "EUW"))
-            );
-            const matchDetailsData = matchDetailsResponses.map(
-                (response) => response.data
-            );
-            setMatchHistory((pre) => [...pre, ...matchDetailsData]);
-            setIsLoading(false);
+            if (matchHistoryResponse.status === 200) {
+                const matchIds = await Promise.all(
+                    matchHistoryResponse.data.map((matchId) => matchId)
+                );
+                const matchDetailsResponses = await Promise.all(
+                    matchIds.map((matchId) => getMatchDetailsV1(matchId, "EUW"))
+                );
+                const matchDetailsData = matchDetailsResponses.map(
+                    (response) => response.data
+                );
+                setMatchHistory((pre) => [...pre, ...matchDetailsData]);
+                setIsLoading(false);
+            }
         };
 
         fetchMatchHistory();
@@ -38,7 +40,11 @@ const MatchHistory = (props) => {
         setStart(start + 5);
     };
     return (
-        <Stack>
+        <Stack
+            minWidth={{ xs: "100%", md: "800px", lg: "800px" }}
+            mb={2}
+            spacing={2}
+        >
             <Card
                 sx={{
                     justifyContent: "center",

@@ -22,7 +22,7 @@ const MatchTimeline = ({ match, participantId }) => {
                 )
                 .filter((frame) => frame.length > 0);
             setTimeline(filtered);
-            console.log(timeline);
+            console.log(filtered);
         };
         getTimeline();
     }, [match.gameId, match.platformId, participantId]);

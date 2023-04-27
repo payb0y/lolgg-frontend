@@ -86,3 +86,17 @@ export async function getMatchTimelineV1(matchId, region) {
             return error.response.data;
         });
 }
+// /mainChampion
+export async function getMainChampion(summonerId, region) {
+    return await axios
+        .post(baseURL + "/mainChampion", {
+            summonerId: summonerId,
+            region: region,
+        })
+        .then((res) => {
+            return res;
+        })
+        .catch((error) => {
+            return error.response.data;
+        });
+}

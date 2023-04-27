@@ -1,5 +1,4 @@
 body {
-    background-color: rgba(240, 242, 245, 0.425);
     font-family: "Roboto", sans-serif;
 }
 .App {
@@ -134,7 +133,7 @@ body {
 .summoner-level {
     position: relative;
     bottom: 8px;
-    left: 35px;
+    left: 60px;
     font-size: 12px;
     font-weight: 600;
     color: #ffffff;
@@ -177,7 +176,6 @@ body {
 }
 
 .progress-bar {
-    height: 16px;
     border-radius: 2px;
     transition: width 0.2s ease-in-out;
 }

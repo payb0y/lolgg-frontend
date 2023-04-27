@@ -1,7 +1,8 @@
 import { TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
-const Header = () => {
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+const Header = ({ mode, setMode }) => {
     const navigate = useNavigate();
     const onSearch = (value) => {
         // fetchSummonerData(value);
@@ -11,9 +12,9 @@ const Header = () => {
         <header
             style={{
                 display: "flex",
-                justifyContent: "center",
+                justifyContent: "space-between",
                 alignItems: "center",
-                margin: "20px 0",
+                margin: "20px",
             }}
         >
             <TextField
@@ -25,7 +26,23 @@ const Header = () => {
                         onSearch(e.target.value);
                     }
                 }}
+                style={{ marginLeft: "auto" }}
             />
+            {mode === "dark" ? (
+                <LightModeIcon
+                    onClick={() => {
+                        setMode("light");
+                    }}
+                    style={{ cursor: "pointer", marginLeft: "auto" }}
+                />
+            ) : (
+                <DarkModeIcon
+                    onClick={() => {
+                        setMode("dark");
+                    }}
+                    style={{ cursor: "pointer", marginLeft: "auto" }}
+                />
+            )}
         </header>
     );
 };

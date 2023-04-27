@@ -4,18 +4,10 @@ import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import Champion from "../parts/Champion";
 import champions from "../../data/champions.json";
+import CustomPaper from "../UI/CustomPaper";
 
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: "white",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: "black ",
-}));
 const LiveMatchBanned = ({ match }) => {
-    // get the banned champions
     const bannedChampions = match.bannedChampions;
-    //get champion name
     let champNames = [];
     bannedChampions.forEach((champion) => {
         for (var key in champions.data) {
@@ -35,7 +27,7 @@ const LiveMatchBanned = ({ match }) => {
                     alignItems="center"
                     justifyContent="center"
                 >
-                    <Item
+                    <CustomPaper
                         sx={{
                             backgroundColor: "rgba(232, 64, 87, 0.9)",
                             display: "flex",
@@ -50,9 +42,9 @@ const LiveMatchBanned = ({ match }) => {
                                 style={{ borderRadius: "10%" }}
                             />
                         ))}
-                    </Item>
-                    <Item>Bans</Item>
-                    <Item
+                    </CustomPaper>
+                    <CustomPaper>Bans</CustomPaper>
+                    <CustomPaper
                         sx={{
                             backgroundColor: "rgba(83, 131, 232, 0.9) ",
                             display: "flex",
@@ -67,7 +59,7 @@ const LiveMatchBanned = ({ match }) => {
                                 style={{ borderRadius: "10%" }}
                             />
                         ))}
-                    </Item>
+                    </CustomPaper>
                 </Stack>
             )}
         </>

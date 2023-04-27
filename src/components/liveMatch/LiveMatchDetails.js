@@ -7,6 +7,7 @@ import LiveMatchChampion from "./LiveMatchChampion";
 import LiveMatchRanks from "./LiveMatchRanks";
 import Box from "@mui/material/Box";
 import LiveMatchBanned from "./LiveMatchBanned";
+import CustomPaper from "../UI/CustomPaper";
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: "white",
@@ -66,8 +67,8 @@ const LiveMatchDetails = ({ liveMatch }) => {
         <Box>
             <Stack spacing={2}>
                 <Stack spacing={2} direction="row" justifyContent="center">
-                    <Item>{gameType}</Item>
-                    <Item>{time}</Item>
+                    <CustomPaper>{gameType}</CustomPaper>
+                    <CustomPaper>{time}</CustomPaper>
                 </Stack>
                 <LiveMatchBanned match={liveMatch} />
                 <Stack spacing={10} direction="row">
@@ -75,14 +76,13 @@ const LiveMatchDetails = ({ liveMatch }) => {
                         <Stack spacing={1}>
                             {blueParticipants.map((participant) => (
                                 <Stack direction="row" spacing={1}>
-                                    <Item
+                                    <CustomPaper
                                         sx={{
                                             width: "150px",
-                                            //backgroundColor: "red" if teamId === 200
                                             backgroundColor: `${
                                                 participant.teamId === 200
-                                                    ? "rgba(83, 131, 232, 0.9)"
-                                                    : "rgba(232, 64, 87, 0.9)"
+                                                    ? "rgba(83, 131, 232, 0.7)"
+                                                    : "rgba(232, 64, 87, 0.7)"
                                             }`,
                                         }}
                                     >
@@ -90,7 +90,7 @@ const LiveMatchDetails = ({ liveMatch }) => {
                                         <LiveMatchChampion
                                             participant={participant}
                                         />
-                                    </Item>
+                                    </CustomPaper>
                                     <LiveMatchRanks participant={participant} />
                                 </Stack>
                             ))}
@@ -105,13 +105,13 @@ const LiveMatchDetails = ({ liveMatch }) => {
                                     justifyContent="flex-end"
                                 >
                                     <LiveMatchRanks participant={participant} />
-                                    <Item
+                                    <CustomPaper
                                         sx={{
                                             width: "150px",
                                             backgroundColor: `${
                                                 participant.teamId === 200
-                                                    ? "rgba(83, 131, 232, 0.9)"
-                                                    : "rgba(232, 64, 87, 0.9)"
+                                                    ? "rgba(83, 131, 232, 0.7)"
+                                                    : "rgba(232, 64, 87, 0.7)"
                                             }`,
                                         }}
                                     >
@@ -119,7 +119,7 @@ const LiveMatchDetails = ({ liveMatch }) => {
                                         <LiveMatchChampion
                                             participant={participant}
                                         />
-                                    </Item>
+                                    </CustomPaper>
                                 </Stack>
                             ))}
                         </Stack>

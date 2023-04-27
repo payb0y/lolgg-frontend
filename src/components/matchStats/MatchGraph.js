@@ -86,6 +86,7 @@ const MatchGraph = ({ participants, participantId }) => {
                                         value={row.data}
                                         maxValue={getMax(graphData)}
                                         teamId={row.teamId}
+                                        height={16}
                                     />
                                 </TableCell>
                             </TableRow>

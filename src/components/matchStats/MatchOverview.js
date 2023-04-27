@@ -156,6 +156,7 @@ const MatchOverview = ({ match }) => {
                                         <ProgressBar
                                             value={row.damageDealt}
                                             maxValue={maxDamage}
+                                            height={10}
                                         />
                                     </TableCell>
                                 ) : null}

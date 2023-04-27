@@ -7,6 +7,7 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import LiveMatchDetails from "./LiveMatchDetails";
 import DialogContent from "@mui/material/DialogContent";
+import { message } from "antd";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     "& .MuiDialogContent-root": {
@@ -31,23 +32,19 @@ const LiveMatch = ({ setLiveMatchVisible }) => {
             const liveMatchResponse = await getLiveMatchV1(
                 summonerData?.id,
                 "EUW"
-            ).catch(() => {
-                console.log("No live match found");
-                // message.info({
-                //     type: "warning",
-                //     content: "No live match found",
-                //     duration: 2,
-                //     maxCount: 1,
-                //     style: {
-                //         marginTop: "8vh",
-                //     },
-                // });
-                setLiveMatchVisible(false);
-            });
+            );
             if (liveMatchResponse?.status === 200) {
                 setLiveMatch(liveMatchResponse.data);
                 setOpen(true);
             } else {
+                message.open({
+                    type: "error",
+                    top: 100,
+                    duration: 2,
+                    maxCount: 1,
+                    rtl: true,
+                    content: "Summoner is not in a live match",
+                });
                 setLiveMatchVisible(false);
             }
         };

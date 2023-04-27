@@ -1,7 +1,8 @@
 import Stack from "@mui/material/Stack";
-import Item from "../../UI/Item";
 import champions from "../../../data/champions.json";
 import Skill from "../../parts/Skill";
+import CustomPaper from "../../UI/CustomPaper";
+import Box from "@mui/material/Box";
 const MatchSkillOrder = ({ championName, participantId, timeline }) => {
     const championSkills = [
         {
@@ -36,9 +37,10 @@ const MatchSkillOrder = ({ championName, participantId, timeline }) => {
         }
     }
     return (
-        <Item
+        <CustomPaper
             sx={{
                 backgroundColor: "rgba(128, 128, 128, 0.3)",
+                padding: "10px",
             }}
         >
             <Stack spacing={0.5}>
@@ -50,17 +52,19 @@ const MatchSkillOrder = ({ championName, participantId, timeline }) => {
                         alignItems="center"
                         key={index}
                     >
-                        <span
+                        <Box
                             style={{
                                 fontSize: "15px",
                                 fontWeight: "bold",
                                 width: "10px",
                                 marginRight: "5px",
-                                textAlign: "center",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
                             }}
                         >
                             {skill.key}
-                        </span>
+                        </Box>
                         <Skill
                             skill={champions.data[championName].spells[index]}
                             width="25px"
@@ -85,7 +89,7 @@ const MatchSkillOrder = ({ championName, participantId, timeline }) => {
                     </Stack>
                 ))}
             </Stack>
-        </Item>
+        </CustomPaper>
     );
 };
 
