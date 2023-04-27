@@ -20,7 +20,9 @@ import { useNavigate } from "react-router-dom";
 
 const MatchOverview = ({ match }) => {
     const navigate = useNavigate();
-
+    const summonerClickHandler = (value) => {
+        navigate(`/profile/${value.target.innerText}`);
+    };
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     const createData = (
@@ -46,14 +48,17 @@ const MatchOverview = ({ match }) => {
     let maxDamageTaken = 0;
     const redRows = [];
     const blueRows = [];
-    const handleSummoner = (value) => {
-        console.log(value.target.textContent);
-        //navigate(`/profile/${value.target.textContent}`);
-    };
     const rows = (participant) => {
         return createData(
             <Stack alignItems="center" justifyContent="center" spacing={0}>
-                {participant.summonerName}
+                <span
+                    onClick={summonerClickHandler}
+                    style={{
+                        cursor: "pointer",
+                    }}
+                >
+                    {participant.summonerName}
+                </span>
                 <Stack
                     direction="row"
                     alignItems="center"
@@ -134,9 +139,7 @@ const MatchOverview = ({ match }) => {
                                 }}
                             >
                                 <TableCell padding="none" align="left">
-                                    <span onClick={handleSummoner}>
-                                        {row.summoner}
-                                    </span>
+                                    {row.summoner}
                                 </TableCell>
                                 <TableCell padding="none" align="center">
                                     {row.kda}
