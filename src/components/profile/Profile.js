@@ -4,10 +4,9 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getUserV1 } from "../../api/LeagueApi";
 import { SummonerContext } from "../../store/SummonerContext";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import SummonerBanner from "../summoner/SummonerBanner";
 import SummonerRank from "../summoner/SummonerRank";
+import Box from "@mui/material/Box";
 const Profile = () => {
     const { summonerName } = useParams();
     const [summonerData, setSummonerData] = useState(null);
@@ -22,16 +21,24 @@ const Profile = () => {
         };
         fetchSummonerData(summonerName);
     }, [summonerName]);
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     return (
         <SummonerContext.Provider value={{ summonerData }}>
             {summonerData && (
-                <Stack
-                    spacing={5}
-                    alignItems={"center"}
-                    p={isMobile ? 0 : 2}
-                    direction={"column"}
+                <Box
+                    sx={{
+                        margin: "auto",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        gap: "20px",
+                    }}
+                    minWidth={{
+                        xs: "100%",
+                        sm: "800px",
+                        md: "800px",
+                        lg: "1200px",
+                    }}
                 >
                     <SummonerBanner />
                     <Stack
@@ -58,7 +65,7 @@ const Profile = () => {
                         <SummonerRank />
                         <MatchHistory />
                     </Stack>
-                </Stack>
+                </Box>
             )}
         </SummonerContext.Provider>
     );

@@ -40,11 +40,7 @@ const MatchHistory = (props) => {
         setStart(start + 5);
     };
     return (
-        <Stack
-            minWidth={{ xs: "100%", md: "800px", lg: "800px" }}
-            mb={2}
-            spacing={2}
-        >
+        <Stack minWidth={{ xs: "100%", md: "800px", lg: "800px" }} spacing={2}>
             <Card
                 sx={{
                     justifyContent: "center",
@@ -61,6 +57,9 @@ const MatchHistory = (props) => {
                 loading={isLoading}
                 variant="outlined"
                 onClick={handleClick}
+                style={{
+                    marginBottom: "20px",
+                }}
             >
                 More
             </LoadingButton>
