@@ -55,13 +55,16 @@ const TooltipLeague = ({ children, content }) => {
     if (activeMatches) {
         for (let i = 0; i < activeMatches.length; i++) {
             actives.push({
-                active: activeMatches[i]?.match(/(?:>)([^<]+)/g),
+                active: activeMatches[i]
+                    ?.match(/(?:>)([^<]+)/g)
+                    .map((match) => match.slice(1)),
                 detail: activeDetailMatches[i]
                     ?.match(/>(.*?)</g)
                     .map((match) => match.slice(1, -1)),
             });
         }
     }
+
     const flavorMatches = content?.description.match(flavorPattern);
     let flavorText = "";
     if (flavorMatches) {
@@ -74,7 +77,9 @@ const TooltipLeague = ({ children, content }) => {
     if (passiveMatches) {
         for (let i = 0; i < passiveMatches.length; i++) {
             passives.push({
-                passive: passiveMatches[i]?.match(/(?:>)([^<]+)/g),
+                passive: passiveMatches[i]
+                    ?.match(/(?:>)([^<]+)/g)
+                    .map((match) => match.slice(1)),
                 detail: passiveDetailMatches[i]
                     ?.match(/>(.*?)</g)
                     .map((match) => match.slice(1, -1)),

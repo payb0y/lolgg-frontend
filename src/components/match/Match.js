@@ -37,8 +37,8 @@ const Match = (props) => {
                 spacing={isMobile ? 1 : 4}
                 sx={{
                     backgroundColor: participantData.win
-                        ? "rgba(83, 131, 232, 0.7)"
-                        : "rgba(232, 64, 87, 0.7)",
+                        ? "rgba(83, 131, 232, 0.8)"
+                        : "rgba(232, 64, 87, 0.8)",
                     borderRadius: 1,
                     p: 1,
                     m: 1,

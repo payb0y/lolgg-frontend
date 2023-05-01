@@ -33,7 +33,8 @@ const SummonerRank = () => {
                         <Stack key={league.losses}>
                             <CustomPaper
                                 sx={{
-                                    backgroundColor: "rgba(0,0,0,0.9)",
+                                    backgroundColor: "rgba(0,0,0,0.8)",
+                                    color: "white",
                                 }}
                             >
                                 <Typography
