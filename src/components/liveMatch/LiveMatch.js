@@ -20,7 +20,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 const LiveMatch = ({ setLiveMatchVisible }) => {
     const [liveMatch, setLiveMatch] = useState(null);
-    const { summonerData } = useContext(SummonerContext);
+    const { summonerData, region } = useContext(SummonerContext);
     const [open, setOpen] = useState(false);
 
     const handleClose = () => {
@@ -31,7 +31,7 @@ const LiveMatch = ({ setLiveMatchVisible }) => {
         const fetchLiveMatch = async () => {
             const liveMatchResponse = await getLiveMatchV1(
                 summonerData?.id,
-                "EUW"
+                region
             );
             if (liveMatchResponse?.status === 200) {
                 setLiveMatch(liveMatchResponse.data);
@@ -49,7 +49,7 @@ const LiveMatch = ({ setLiveMatchVisible }) => {
             }
         };
         fetchLiveMatch();
-    }, [summonerData?.id, setLiveMatchVisible]);
+    }, [summonerData?.id, setLiveMatchVisible, region]);
     return (
         <>
             <BootstrapDialog

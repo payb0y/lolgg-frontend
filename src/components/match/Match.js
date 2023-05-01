@@ -14,6 +14,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import MatchParticipantsV1 from "./MatchParticipantsV1";
 
 const Match = (props) => {
     const { summonerData } = useContext(SummonerContext);
@@ -31,14 +32,14 @@ const Match = (props) => {
     return (
         <>
             <Stack
-                justifyContent="flex-start"
+                justifyContent="space-between"
                 alignItems="center"
                 direction="row"
                 spacing={isMobile ? 1 : 4}
                 sx={{
                     backgroundColor: participantData.win
-                        ? "rgba(83, 131, 232, 0.9)"
-                        : "rgba(232, 64, 87, 0.9)",
+                        ? "rgba(83, 131, 232, 0.7)"
+                        : "rgba(232, 64, 87, 0.7)",
                     borderRadius: 1,
                     p: 1,
                     m: 1,
@@ -92,6 +93,13 @@ const Match = (props) => {
                         summoner={participantData}
                     />
                 )}
+                {/* {isMobile ? null : (
+                    <MatchParticipantsV1
+                        participantData={participantData}
+                        match={match}
+                    />
+                )} */}
+
                 <div
                     onClick={handleDetailsClick}
                     className="expand-div"

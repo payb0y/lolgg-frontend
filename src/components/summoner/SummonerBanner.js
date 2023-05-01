@@ -13,10 +13,11 @@ import Button from "@mui/material/Button";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Box from "@mui/material/Box";
+
 const SummonerBanner = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-    const { summonerData } = useContext(SummonerContext);
+    const { summonerData, region } = useContext(SummonerContext);
     const [mainChampion, setMainChampion] = useState(null);
     const HandleLive = () => {
         setLiveMatchVisible(true);
@@ -25,7 +26,7 @@ const SummonerBanner = () => {
     useEffect(() => {
         setMainChampion(null);
         const fetchMainChampion = async () => {
-            const mainId = await getMainChampion(summonerData.id, "EUW");
+            const mainId = await getMainChampion(summonerData.id, region);
             if (mainId.status === 200 && mainId) {
                 const champion = champions.keys[mainId.data[0].championId];
                 const skin =
@@ -39,7 +40,7 @@ const SummonerBanner = () => {
             }
         };
         fetchMainChampion();
-    }, [summonerData]);
+    }, [summonerData, region]);
 
     return (
         <>
@@ -48,6 +49,7 @@ const SummonerBanner = () => {
             )}
             {mainChampion && (
                 <Box
+                    id="main-image"
                     minWidth={{
                         xs: "100%",
                         sm: "100%",
@@ -59,8 +61,8 @@ const SummonerBanner = () => {
                         sx={{
                             height: isMobile ? 500 : 400,
                             backgroundImage: isMobile
-                                ? `url(http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${mainChampion.champion}_${mainChampion.skin}.jpg)`
-                                : `url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${mainChampion.champion}_${mainChampion.skin}.jpg)`,
+                                ? `url(https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${mainChampion.champion}_${mainChampion.skin}.jpg)`
+                                : `url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${mainChampion.champion}_${mainChampion.skin}.jpg)`,
                             backgroundSize: "cover",
                             backgroundPosition: "start",
                         }}

@@ -21,8 +21,8 @@ const MatchParticipants = (props) => {
     const div = (participant) => {
         const name = participant.summonerName;
         let name1 = participant.summonerName;
-        if (participant.summonerName.length > 10) {
-            name1 = name1.substring(0, 8) + "...";
+        if (participant.summonerName.length > 9) {
+            name1 = name1.substring(0, 7) + "...";
         }
         return (
             <Stack

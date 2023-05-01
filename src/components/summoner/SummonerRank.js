@@ -7,13 +7,13 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import CustomPaper from "../UI/CustomPaper";
 const SummonerRank = () => {
-    const { summonerData } = useContext(SummonerContext);
+    const { summonerData, region } = useContext(SummonerContext);
     const [summonerLeague, setSummonerLeague] = useState([]);
     useEffect(() => {
-        getSummonerLeagueV1(summonerData.id, "EUW").then((res) => {
+        getSummonerLeagueV1(summonerData.id, region).then((res) => {
             setSummonerLeague(res.data);
         });
-    }, [summonerData.id]);
+    }, [summonerData.id, region]);
     return (
         <Stack
             spacing={4}

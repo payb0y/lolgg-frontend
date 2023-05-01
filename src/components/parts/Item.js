@@ -23,6 +23,7 @@ const Item = ({ width, height, item }) => {
                     alt={item}
                     width={width}
                     height={height}
+                    style={{ borderRadius: "10%" }}
                 />
             </TooltipLeague>
         );

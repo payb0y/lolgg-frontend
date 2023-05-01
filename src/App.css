@@ -92,16 +92,16 @@ body {
     font-size: 13px;
     font-weight: 600;
     color: #ffffff;
-    background-color: #5e7392;
-    border-radius: 50%;
+    background-color: rgba(49, 49, 49, 1);
+    border-radius: 40%;
     width: 20px;
     height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    top: -10px;
-    margin-bottom: -5px;
+    position: absolute;
+    bottom: -7px;
+    left: 50%;
 }
 
 .match-participants {

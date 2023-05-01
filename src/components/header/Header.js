@@ -1,48 +1,52 @@
-import { TextField } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import Search from "./Search";
+import logo from "../../assets/logo.jpeg";
+import { useNavigate } from "react-router-dom";
 const Header = ({ mode, setMode }) => {
     const navigate = useNavigate();
-    const onSearch = (value) => {
-        // fetchSummonerData(value);
-        navigate(`/profile/${value}`);
-    };
     return (
-        <header
-            style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                margin: "20px",
-            }}
-        >
-            <TextField
-                id="outlined-basic"
-                label="Summoner"
-                variant="outlined"
-                onKeyPress={(e) => {
-                    if (e.key === "Enter") {
-                        onSearch(e.target.value);
-                    }
+        <header>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    margin: "20px",
                 }}
-                style={{ marginLeft: "auto" }}
-            />
-            {mode === "dark" ? (
-                <LightModeIcon
-                    onClick={() => {
-                        setMode("light");
+            >
+                <img
+                    src={logo}
+                    alt="logo"
+                    style={{
+                        width: "50px",
+                        height: "50px",
+                        borderRadius: "50%",
+                        cursor: "pointer",
                     }}
-                    style={{ cursor: "pointer", marginLeft: "auto" }}
-                />
-            ) : (
-                <DarkModeIcon
                     onClick={() => {
-                        setMode("dark");
+                        navigate("/");
                     }}
-                    style={{ cursor: "pointer", marginLeft: "auto" }}
                 />
-            )}
+                <Search />
+                <div>
+                    {mode === "dark" ? (
+                        <LightModeIcon
+                            onClick={() => {
+                                setMode("light");
+                            }}
+                            style={{ cursor: "pointer" }}
+                        />
+                    ) : (
+                        <DarkModeIcon
+                            onClick={() => {
+                                setMode("dark");
+                            }}
+                            style={{ cursor: "pointer" }}
+                        />
+                    )}
+                </div>
+            </div>
         </header>
     );
 };

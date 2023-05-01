@@ -6,6 +6,7 @@ import React from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useState } from "react";
+import Home from "./components/homePage/Home";
 
 function App() {
     const [mode, setMode] = useState(localStorage.getItem("mode") || "dark");
@@ -20,7 +21,12 @@ function App() {
             <CssBaseline />
             <Header mode={mode} setMode={setMode} />
             <Routes>
-                <Route path="/profile/:summonerName" element={<Profile />} />
+                <Route
+                    path="/profile/:region/:summonerName"
+                    element={<Profile />}
+                />
+                <Route path="/" element={<Home />} />
+                <Route path="*" element={<Home />} />
             </Routes>
         </ThemeProvider>
     );

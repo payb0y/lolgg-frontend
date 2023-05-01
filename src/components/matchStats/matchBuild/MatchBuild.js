@@ -6,9 +6,12 @@ import { getMatchTimelineV1 } from "../../../api/LeagueApi";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useContext } from "react";
+import { SummonerContext } from "../../../store/SummonerContext";
 
 const MatchBuild = ({ participant, match }) => {
     const [timeline, setTimeline] = useState(null);
+    const { region } = useContext(SummonerContext);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -16,7 +19,7 @@ const MatchBuild = ({ participant, match }) => {
         const timeline = async () => {
             const t = await getMatchTimelineV1(
                 match.platformId + "_" + match.gameId,
-                "EUW"
+                region
             );
             const frames = t.data.info.frames.map((frame) =>
                 frame.events.map((event) => event)
@@ -24,7 +27,7 @@ const MatchBuild = ({ participant, match }) => {
             setTimeline(frames);
         };
         timeline();
-    }, [match.gameId, match.platformId]);
+    }, [match.gameId, match.platformId, region]);
 
     return (
         <Stack

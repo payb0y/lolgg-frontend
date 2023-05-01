@@ -8,21 +8,21 @@ import SummonerBanner from "../summoner/SummonerBanner";
 import SummonerRank from "../summoner/SummonerRank";
 import Box from "@mui/material/Box";
 const Profile = () => {
-    const { summonerName } = useParams();
+    const { summonerName, region } = useParams();
     const [summonerData, setSummonerData] = useState(null);
 
     useEffect(() => {
         setSummonerData(null);
-        const fetchSummonerData = async (summonerName) => {
-            const summonerResponse = await getUserV1(summonerName, "EUW");
+        const fetchSummonerData = async () => {
+            const summonerResponse = await getUserV1(summonerName, region);
             if (summonerResponse.status === 200 && summonerResponse) {
                 setSummonerData(summonerResponse.data);
             }
         };
-        fetchSummonerData(summonerName);
+        fetchSummonerData();
     }, [summonerName]);
     return (
-        <SummonerContext.Provider value={{ summonerData }}>
+        <SummonerContext.Provider value={{ summonerData, region }}>
             {summonerData && (
                 <Box
                     sx={{

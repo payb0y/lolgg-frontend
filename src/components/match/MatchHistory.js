@@ -10,21 +10,24 @@ import LoadingButton from "@mui/lab/LoadingButton";
 const MatchHistory = (props) => {
     const [matchHistory, setMatchHistory] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const { summonerData } = useContext(SummonerContext);
+    const { summonerData, region } = useContext(SummonerContext);
     const [start, setStart] = useState(0);
     useEffect(() => {
         const fetchMatchHistory = async () => {
             setIsLoading(true);
             const matchHistoryResponse = await getMatchHistoryV1(
                 summonerData.puuid,
-                start
+                start,
+                region
             );
             if (matchHistoryResponse.status === 200) {
                 const matchIds = await Promise.all(
                     matchHistoryResponse.data.map((matchId) => matchId)
                 );
                 const matchDetailsResponses = await Promise.all(
-                    matchIds.map((matchId) => getMatchDetailsV1(matchId, "EUW"))
+                    matchIds.map((matchId) =>
+                        getMatchDetailsV1(matchId, region)
+                    )
                 );
                 const matchDetailsData = matchDetailsResponses.map(
                     (response) => response.data

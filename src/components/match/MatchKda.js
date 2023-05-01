@@ -1,24 +1,27 @@
 import { Stack } from "@mui/material";
 
-const MatchKda = ({participant}) => {
+const MatchKda = ({ participant }) => {
     const ratio = (
         (participant.kills + participant.assists) /
         participant.deaths
     ).toFixed(2);
     return (
-        <Stack spacing={0.5} justifyContent="center" alignItems="center">
-            <div className="kda">
+        <Stack width={85} justifyContent="center" alignItems="center">
+            <span>
                 {participant.kills +
                     " \\ " +
                     participant.deaths +
                     " \\ " +
                     participant.assists}
-            </div>
-            <div className="ratio">
-                {participant.deaths !== 0
-                    ? ratio + " KDA"
-                    : "Perfect KDA"}
-            </div>
+            </span>
+            <span>
+                {participant.deaths !== 0 ? ratio + " KDA" : "Perfect KDA"}
+            </span>
+            <span>
+                {participant.totalMinionsKilled +
+                    participant.neutralMinionsKilled}{" "}
+                CS
+            </span>
         </Stack>
     );
 };
