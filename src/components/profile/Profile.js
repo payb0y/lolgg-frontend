@@ -20,7 +20,7 @@ const Profile = () => {
             }
         };
         fetchSummonerData();
-    }, [summonerName]);
+    }, [summonerName, region]);
     return (
         <SummonerContext.Provider value={{ summonerData, region }}>
             {summonerData && (

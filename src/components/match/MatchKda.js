@@ -6,7 +6,14 @@ const MatchKda = ({ participant }) => {
         participant.deaths
     ).toFixed(2);
     return (
-        <Stack width={85} justifyContent="center" alignItems="center">
+        <Stack
+            width={85}
+            justifyContent="center"
+            alignItems="center"
+            sx={{
+                fontSize: "14px",
+            }}
+        >
             <span>
                 {participant.kills +
                     " \\ " +

@@ -38,7 +38,7 @@ const MatchHistory = (props) => {
         };
 
         fetchMatchHistory();
-    }, [summonerData.puuid, start]);
+    }, [summonerData.puuid, start, region]);
     const handleClick = () => {
         setStart(start + 5);
     };

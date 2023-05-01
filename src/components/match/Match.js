@@ -14,7 +14,6 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import MatchParticipantsV1 from "./MatchParticipantsV1";
 
 const Match = (props) => {
     const { summonerData } = useContext(SummonerContext);
@@ -71,7 +70,6 @@ const Match = (props) => {
                             />
                         </Stack>
                         <MatchKda participant={participantData} />
-                        {/* <MatchMinions participant={participantData} /> */}
                     </Stack>
                     <Stack
                         justifyContent="center"
@@ -93,13 +91,6 @@ const Match = (props) => {
                         summoner={participantData}
                     />
                 )}
-                {/* {isMobile ? null : (
-                    <MatchParticipantsV1
-                        participantData={participantData}
-                        match={match}
-                    />
-                )} */}
-
                 <div
                     onClick={handleDetailsClick}
                     className="expand-div"
