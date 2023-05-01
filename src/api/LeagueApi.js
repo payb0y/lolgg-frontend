@@ -1,5 +1,5 @@
 import axios from "axios";
-const dev = true;
+const dev = false;
 export const baseURL = dev
     ? "http://localhost:8080/api/v1"
     : "https://lolgg.herokuapp.com/api/v1";
