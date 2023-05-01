@@ -7,7 +7,7 @@ import Champion from "../parts/Champion";
 const MatchParticipants = (props) => {
     const { summonerData } = useContext(SummonerContext);
     const navigate = useNavigate();
-
+    const { region } = useContext(SummonerContext);
     const participants = props.match.info.participants;
     const BlueTeam = participants.filter(
         (participant) => participant.teamId === 100
@@ -16,7 +16,7 @@ const MatchParticipants = (props) => {
         (participant) => participant.teamId === 200
     );
     const handleSummonerClick = (value) => {
-        navigate(`/profile/${value.target.id}`);
+        navigate(`/profile/${region}/${value.target.id}`);
     };
     const div = (participant) => {
         const name = participant.summonerName;

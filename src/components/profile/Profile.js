@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import { getUserV1 } from "../../api/LeagueApi";
 import { SummonerContext } from "../../store/SummonerContext";
 import SummonerBanner from "../summoner/SummonerBanner";
-import SummonerRank from "../summoner/SummonerRank";
 import Box from "@mui/material/Box";
 const Profile = () => {
     const { summonerName, region } = useParams();
@@ -62,7 +61,6 @@ const Profile = () => {
                             lg: "flex-start",
                         }}
                     >
-                        <SummonerRank />
                         <MatchHistory />
                     </Stack>
                 </Box>

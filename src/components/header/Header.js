@@ -24,6 +24,7 @@ const Header = ({ mode, setMode }) => {
                         borderRadius: "50%",
                         cursor: "pointer",
                     }}
+                    title="Home"
                     onClick={() => {
                         navigate("/");
                     }}

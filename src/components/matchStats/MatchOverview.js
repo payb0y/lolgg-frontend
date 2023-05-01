@@ -17,13 +17,15 @@ import LiveMatchRanks from "../liveMatch/LiveMatchRanks";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useNavigate } from "react-router-dom";
-
+import { useContext } from "react";
+import { SummonerContext } from "../../store/SummonerContext";
 import ProgressBar from "../UI/ProgressBar";
 
 const MatchOverview = ({ match }) => {
     const navigate = useNavigate();
+    const { region } = useContext(SummonerContext);
     const summonerClickHandler = (value) => {
-        navigate(`/profile/${value.target.innerText}`);
+        navigate(`/profile/${region}/${value.target.innerText}`);
     };
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));

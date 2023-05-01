@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Box from "@mui/material/Box";
+import SummonerRank from "./SummonerRank";
 
 const SummonerBanner = () => {
     const theme = useTheme();
@@ -59,25 +60,29 @@ const SummonerBanner = () => {
                 >
                     <Card
                         sx={{
-                            height: isMobile ? 500 : 400,
+                            height: isMobile ? 520 : 400,
                             backgroundImage: isMobile
                                 ? `url(https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${mainChampion.champion}_${mainChampion.skin}.jpg)`
                                 : `url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${mainChampion.champion}_${mainChampion.skin}.jpg)`,
                             backgroundSize: "cover",
                             backgroundPosition: "start",
+                            padding: "10px",
                         }}
                     >
                         <Stack
-                            height={"100%"}
-                            direction="row"
                             alignItems={{
-                                xs: "flex-end",
-                                sm: "center",
+                                xs: "center",
+                                sm: "flex-start",
+                                md: "flex-start",
+                                lg: "flex-start",
                             }}
                             justifyContent={{
                                 xs: "center",
-                                sm: "flex-start",
+                                sm: "center",
+                                md: "center",
+                                lg: "center",
                             }}
+                            spacing={1}
                         >
                             <CustomPaper
                                 sx={{
@@ -86,8 +91,6 @@ const SummonerBanner = () => {
                                     justifyContent: "center",
                                     alignItems: "center",
                                     backgroundColor: "rgba(0,0,0,0.5)",
-                                    marginBottom: "20px",
-                                    marginLeft: isMobile ? "0px" : "20px",
                                 }}
                             >
                                 <SummonerIcon
@@ -107,6 +110,7 @@ const SummonerBanner = () => {
                                     Live Match
                                 </Button>
                             </CustomPaper>
+                            <SummonerRank />
                         </Stack>
                     </Card>
                 </Box>
