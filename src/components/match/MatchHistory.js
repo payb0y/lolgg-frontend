@@ -6,6 +6,7 @@ import { SummonerContext } from "../../store/SummonerContext";
 import Card from "@mui/material/Card";
 import { Stack } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
+import HistoryStats from "./HistoryStats";
 
 const MatchHistory = (props) => {
     const [matchHistory, setMatchHistory] = useState([]);
@@ -29,11 +30,17 @@ const MatchHistory = (props) => {
                         getMatchDetailsV1(matchId, region)
                     )
                 );
-                const matchDetailsData = matchDetailsResponses.map(
-                    (response) => response.data
-                );
-                setMatchHistory((pre) => [...pre, ...matchDetailsData]);
-                setIsLoading(false);
+                if (
+                    !matchDetailsResponses.find(
+                        (response) => response.status !== 200
+                    )
+                ) {
+                    const matchDetailsData = matchDetailsResponses.map(
+                        (response) => response.data
+                    );
+                    setMatchHistory((pre) => [...pre, ...matchDetailsData]);
+                    setIsLoading(false);
+                }
             }
         };
 
@@ -44,6 +51,12 @@ const MatchHistory = (props) => {
     };
     return (
         <Stack minWidth={{ xs: "100%", md: "800px", lg: "800px" }} spacing={2}>
+            {matchHistory.length > 0 && (
+                <HistoryStats
+                    matchHistory={matchHistory}
+                    summonerData={summonerData}
+                />
+            )}
             <Card
                 sx={{
                     justifyContent: "center",
@@ -51,7 +64,7 @@ const MatchHistory = (props) => {
                     width: "100%",
                 }}
             >
-                {matchHistory &&
+                {matchHistory.length > 0 &&
                     matchHistory.map((match, index) => (
                         <Match value={match} live={props.value} key={index} />
                     ))}
