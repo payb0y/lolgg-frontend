@@ -75,7 +75,7 @@ const SummonerBanner = () => {
                             lg: "flex-start",
                         }}
                         height="100%"
-                        justifyContent={"center"}
+                        justifyContent={"flex-start"}
                         spacing={1}
                     >
                         <SummonerPastRanks />
