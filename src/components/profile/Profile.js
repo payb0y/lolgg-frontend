@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import MatchHistory from "../match/MatchHistory";
+import MatchHistory from "../matchHistory/MatchHistory";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getUserV1 } from "../../api/LeagueApi";

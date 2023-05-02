@@ -34,15 +34,6 @@ const HistoryStats = ({ matchHistory, summonerData }) => {
                                   deaths: champion.deaths + participant.deaths,
                                   assists:
                                       champion.assists + participant.assists,
-
-                                  winRate: Math.round(
-                                      ((champion.wins + participant.win) /
-                                          (champion.wins +
-                                              participant.win +
-                                              champion.losses +
-                                              !participant.win)) *
-                                          100
-                                  ),
                                   gamesPlayed: champion.gamesPlayed + 1,
                               }
                             : champion
@@ -68,37 +59,68 @@ const HistoryStats = ({ matchHistory, summonerData }) => {
                 alignItems="center"
                 spacing={2}
             >
-                <div>
+                <CustomPaper
+                    sx={{
+                        backgroundColor: "rgba(255, 255, 255, 0.1)",
+                    }}
+                >
                     <div>{wins + losses} Games</div>
-                    <div>Wins: {wins}</div>
-                    <div>Losses: {losses}</div>
+                    <div>
+                        {wins}W-{losses}L
+                    </div>
                     <div>
                         Win Rate: {Math.round((wins / (wins + losses)) * 100)}%
                     </div>
-                </div>
+                </CustomPaper>
                 {v2.map((champion, index) => {
                     if (index < 3)
                         return (
                             <Stack
                                 key={index}
-                                direction="column"
                                 justifyContent="center"
                                 alignItems="center"
                             >
-                                <Champion
-                                    key={index}
-                                    championName={champion.name}
-                                    width="50px"
-                                    height="50px"
-                                />
-                                <div>Wins: {champion.wins}</div>
-                                <div>Losses: {champion.losses}</div>
-                                <div>
-                                    {" "}
-                                    kda {champion.kills}/{champion.deaths}/
-                                    {champion.assists}
-                                </div>
-                                <div>Win Rate: {champion.winRate}%</div>
+                                <CustomPaper
+                                    sx={{
+                                        backgroundColor:
+                                            "rgba(255, 255, 255, 0.5)",
+                                    }}
+                                >
+                                    <Stack
+                                        direction="row"
+                                        justifyContent="center"
+                                        alignItems="center"
+                                        spacing={1}
+                                    >
+                                        <Champion
+                                            key={index}
+                                            championName={champion.name}
+                                            width="50px"
+                                            height="50px"
+                                        />
+                                        <Stack>
+                                            <div>
+                                                {Math.round(
+                                                    (champion.wins /
+                                                        champion.gamesPlayed) *
+                                                        100
+                                                )}
+                                                % {champion.wins}W-
+                                                {champion.losses}L
+                                            </div>
+                                            <div>
+                                                {champion.deaths > 0
+                                                    ? (
+                                                          (champion.kills +
+                                                              champion.assists) /
+                                                          champion.deaths
+                                                      ).toFixed(2)
+                                                    : "Perfect KDA"}{" "}
+                                                KDA
+                                            </div>
+                                        </Stack>
+                                    </Stack>
+                                </CustomPaper>
                             </Stack>
                         );
                     else return null;

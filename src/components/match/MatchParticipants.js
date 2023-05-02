@@ -1,13 +1,11 @@
 import { useContext } from "react";
 import { SummonerContext } from "../../store/SummonerContext";
 import { Stack } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import Champion from "../parts/Champion";
+import SummonerName from "../parts/SummonerName";
 
 const MatchParticipants = (props) => {
     const { summonerData } = useContext(SummonerContext);
-    const navigate = useNavigate();
-    const { region } = useContext(SummonerContext);
     const participants = props.match.info.participants;
     const BlueTeam = participants.filter(
         (participant) => participant.teamId === 100
@@ -15,9 +13,6 @@ const MatchParticipants = (props) => {
     const RedTeam = participants.filter(
         (participant) => participant.teamId === 200
     );
-    const handleSummonerClick = (value) => {
-        navigate(`/profile/${region}/${value.target.id}`);
-    };
     const div = (participant) => {
         const name = participant.summonerName;
         let name1 = participant.summonerName;
@@ -46,9 +41,7 @@ const MatchParticipants = (props) => {
                     }
                     key={participant.summonerName}
                 >
-                    <span onClick={handleSummonerClick} id={name} title={name}>
-                        {name1}
-                    </span>
+                    <SummonerName summonerName={name1} id={name} />
                 </div>
             </Stack>
         );

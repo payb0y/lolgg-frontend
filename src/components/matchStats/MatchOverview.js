@@ -7,6 +7,8 @@ import {
     TableBody,
     Paper,
     Stack,
+    useTheme,
+    useMediaQuery,
 } from "@mui/material";
 import MatchChampion from "../match/MatchChampion";
 import MatchItems from "../match/MatchItems";
@@ -14,19 +16,10 @@ import MatchSpells from "../match/MatchSpells";
 import MatchRunes from "../match/MatchRunes";
 import MatchKda from "../match/MatchKda";
 import LiveMatchRanks from "../liveMatch/LiveMatchRanks";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { SummonerContext } from "../../store/SummonerContext";
 import ProgressBar from "../UI/ProgressBar";
+import SummonerName from "../parts/SummonerName";
 
 const MatchOverview = ({ match }) => {
-    const navigate = useNavigate();
-    const { region } = useContext(SummonerContext);
-    const summonerClickHandler = (value) => {
-        navigate(`/profile/${region}/${value.target.innerText}`);
-    };
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     const createData = (
@@ -54,14 +47,7 @@ const MatchOverview = ({ match }) => {
     const rows = (participant) => {
         return createData(
             <Stack alignItems="center" justifyContent="center" spacing={0}>
-                <span
-                    onClick={summonerClickHandler}
-                    style={{
-                        cursor: "pointer",
-                    }}
-                >
-                    {participant.summonerName}
-                </span>
+                <SummonerName summonerName={participant.summonerName} />
                 <Stack
                     direction="row"
                     alignItems="center"

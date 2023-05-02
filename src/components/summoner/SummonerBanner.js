@@ -55,7 +55,7 @@ const SummonerBanner = () => {
                         xs: "100%",
                         sm: "100%",
                         md: "100%",
-                        lg: "1080px",
+                        lg: "1200px",
                     }}
                     sx={{
                         height: isMobile ? "fit-content" : 430,

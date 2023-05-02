@@ -15,10 +15,9 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-const Match = (props) => {
+const Match = ({ match }) => {
     const { summonerData } = useContext(SummonerContext);
     const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-    const match = props.value;
     const participantData = match.info.participants.find(
         (participant) => participant.summonerName === summonerData.name
     );
@@ -30,79 +29,81 @@ const Match = (props) => {
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     return (
         <>
-            <Stack
-                justifyContent="space-between"
-                alignItems="center"
-                direction="row"
-                spacing={isMobile ? 1 : 4}
-                sx={{
-                    backgroundColor: participantData.win
-                        ? "rgba(83, 131, 232, 0.8)"
-                        : "rgba(232, 64, 87, 0.8)",
-                    borderRadius: 1,
-                    p: 1,
-                    m: 1,
-                }}
-            >
-                <MatchInfo match={match} />
-                <Stack>
-                    <Stack direction="row" spacing={2}>
-                        <Stack
-                            direction="row"
-                            alignItems="center"
-                            justifyContent="center"
-                            spacing={1}
-                        >
-                            <MatchChampion
-                                participant={participantData}
-                                height={50}
-                                width={50}
-                            />
-                            <MatchSpells
-                                participant={participantData}
-                                width={30}
-                                height={30}
-                            />
-                            <MatchRunes
-                                perks={participantData.perks}
-                                width={30}
-                                height={30}
-                            />
-                        </Stack>
-                        <MatchKda participant={participantData} />
-                    </Stack>
-                    <Stack
-                        justifyContent="center"
-                        alignItems="center"
-                        direction={isMobile ? "column" : "row"}
-                        spacing={2}
-                    >
-                        <MatchItems
-                            participant={participantData}
-                            width={30}
-                            height={30}
-                        />
-                        <MatchKills participant={participantData} />
-                    </Stack>
-                </Stack>
-                {isMobile ? null : (
-                    <MatchParticipants
-                        match={match}
-                        summoner={participantData}
-                    />
-                )}
-                <div
-                    onClick={handleDetailsClick}
-                    className="expand-div"
-                    title="Details"
+            {!match.info.gameMode.includes("TUTORIAL") && (
+                <Stack
+                    justifyContent="space-between"
+                    alignItems="center"
+                    direction="row"
+                    spacing={isMobile ? 1 : 4}
+                    sx={{
+                        backgroundColor: participantData.win
+                            ? "rgba(83, 131, 232, 0.8)"
+                            : "rgba(232, 64, 87, 0.8)",
+                        borderRadius: 1,
+                        p: 1,
+                        m: 1,
+                    }}
                 >
-                    {isDetailsOpen ? (
-                        <ArrowDropUpIcon />
-                    ) : (
-                        <ArrowDropDownIcon />
+                    <MatchInfo match={match} />
+                    <Stack>
+                        <Stack direction="row" spacing={2}>
+                            <Stack
+                                direction="row"
+                                alignItems="center"
+                                justifyContent="center"
+                                spacing={1}
+                            >
+                                <MatchChampion
+                                    participant={participantData}
+                                    height={50}
+                                    width={50}
+                                />
+                                <MatchSpells
+                                    participant={participantData}
+                                    width={30}
+                                    height={30}
+                                />
+                                <MatchRunes
+                                    perks={participantData.perks}
+                                    width={30}
+                                    height={30}
+                                />
+                            </Stack>
+                            <MatchKda participant={participantData} />
+                        </Stack>
+                        <Stack
+                            justifyContent="center"
+                            alignItems="center"
+                            direction={isMobile ? "column" : "row"}
+                            spacing={2}
+                        >
+                            <MatchItems
+                                participant={participantData}
+                                width={30}
+                                height={30}
+                            />
+                            <MatchKills participant={participantData} />
+                        </Stack>
+                    </Stack>
+                    {isMobile ? null : (
+                        <MatchParticipants
+                            match={match}
+                            summoner={participantData}
+                        />
                     )}
-                </div>
-            </Stack>
+                    <div
+                        onClick={handleDetailsClick}
+                        className="expand-div"
+                        title="Details"
+                    >
+                        {isDetailsOpen ? (
+                            <ArrowDropUpIcon />
+                        ) : (
+                            <ArrowDropDownIcon />
+                        )}
+                    </div>
+                </Stack>
+            )}
             {isDetailsOpen && (
                 <MatchStats match={match} summoner={participantData} />
             )}

@@ -106,7 +106,7 @@ export async function getSummonerLeagueV1(summonerId, region) {
 export async function getMatchTimelineV1(matchId, region) {
     while (true) {
         try {
-            const response = await axios.post(baseURL + "/matchTimeline", {
+            const response = await axios.post(baseURL + "/match/timeline", {
                 matchId: matchId,
                 region: region,
             });
