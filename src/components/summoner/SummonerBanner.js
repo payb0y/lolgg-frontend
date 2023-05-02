@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { SummonerContext } from "../../store/SummonerContext";
-import { Card } from "@mui/material";
 import SummonerIcon from "../summoner/SummonerIcon";
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";

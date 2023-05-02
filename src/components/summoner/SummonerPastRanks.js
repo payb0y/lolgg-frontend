@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Chip, Stack, Tooltip, Box } from "@mui/material";
+import { Chip, Tooltip, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { getPastRanks } from "../../api/LeagueApi";
 import { styled } from "@mui/material/styles";
