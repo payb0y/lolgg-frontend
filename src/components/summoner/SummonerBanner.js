@@ -14,6 +14,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Box from "@mui/material/Box";
 import SummonerRank from "./SummonerRank";
+import SummonerPastRanks from "./SummonerPastRanks";
 
 const SummonerBanner = () => {
     const theme = useTheme();
@@ -57,62 +58,56 @@ const SummonerBanner = () => {
                         md: "100%",
                         lg: "1080px",
                     }}
+                    sx={{
+                        height: isMobile ? 520 : 430,
+                        backgroundImage: isMobile
+                            ? `url(https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${mainChampion.champion}_${mainChampion.skin}.jpg)`
+                            : `url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${mainChampion.champion}_${mainChampion.skin}.jpg)`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "start",
+                        padding: "10px",
+                    }}
                 >
-                    <Card
-                        sx={{
-                            height: isMobile ? 520 : 400,
-                            backgroundImage: isMobile
-                                ? `url(https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${mainChampion.champion}_${mainChampion.skin}.jpg)`
-                                : `url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${mainChampion.champion}_${mainChampion.skin}.jpg)`,
-                            backgroundSize: "cover",
-                            backgroundPosition: "start",
-                            padding: "10px",
+                    <Stack
+                        alignItems={{
+                            xs: "center",
+                            sm: "flex-start",
+                            md: "flex-start",
+                            lg: "flex-start",
                         }}
+                        height="100%"
+                        justifyContent={"center"}
+                        spacing={1}
                     >
-                        <Stack
-                            alignItems={{
-                                xs: "center",
-                                sm: "flex-start",
-                                md: "flex-start",
-                                lg: "flex-start",
+                        <SummonerPastRanks />
+                        <CustomPaper
+                            sx={{
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                backgroundColor: "rgba(0,0,0,0.5)",
                             }}
-                            justifyContent={{
-                                xs: "center",
-                                sm: "center",
-                                md: "center",
-                                lg: "center",
-                            }}
-                            spacing={1}
                         >
-                            <CustomPaper
+                            <SummonerIcon
+                                summoner={summonerData}
+                                width={150}
+                                height={150}
+                            />
+                            <Typography
+                                variant="h6"
                                 sx={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    backgroundColor: "rgba(0,0,0,0.5)",
+                                    color: "white",
                                 }}
                             >
-                                <SummonerIcon
-                                    summoner={summonerData}
-                                    width={150}
-                                    height={150}
-                                />
-                                <Typography
-                                    variant="h6"
-                                    sx={{
-                                        color: "white",
-                                    }}
-                                >
-                                    {summonerData.name}
-                                </Typography>
-                                <Button variant="outlined" onClick={HandleLive}>
-                                    Live Match
-                                </Button>
-                            </CustomPaper>
-                            <SummonerRank />
-                        </Stack>
-                    </Card>
+                                {summonerData.name}
+                            </Typography>
+                            <Button variant="outlined" onClick={HandleLive}>
+                                Live Match
+                            </Button>
+                        </CustomPaper>
+                        <SummonerRank />
+                    </Stack>
                 </Box>
             )}
         </>

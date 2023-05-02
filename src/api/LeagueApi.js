@@ -143,3 +143,23 @@ export async function getMainChampion(summonerId, region) {
         }
     }
 }
+export async function getPastRanks(summonerName, region) {
+    while (true) {
+        try {
+            const response = await axios.post(baseURL + "/summoner/pastRanks", {
+                summonerName: summonerName,
+                region: region,
+            });
+            if (response.status === 200) {
+                return response;
+            }
+        } catch (error) {
+            if (error.response && error.response.status !== 200) {
+                console.log(`Error: ${error}. Retrying...`);
+                await new Promise((resolve) => setTimeout(resolve, retryDelay));
+            } else {
+                return error.response.data;
+            }
+        }
+    }
+}
