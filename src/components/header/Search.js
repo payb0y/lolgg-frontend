@@ -41,7 +41,7 @@ const Search = () => {
                         onSearch(e.target.value);
                     }
                 }}
-                style={{ marginLeft: "auto" }}
+                style={{ marginLeft: "auto", width: "160px" }}
             />
         </div>
     );
