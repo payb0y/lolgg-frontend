@@ -43,7 +43,7 @@ export async function getMatchDetailsV1(matchId, region) {
         } catch (error) {
             if (error.response && error.response.status !== 200) {
                 console.log(`Error: ${error}. Retrying...`);
-                await new Promise((resolve) => setTimeout(resolve, axios));
+                await new Promise((resolve) => setTimeout(resolve, retryDelay));
             } else {
                 return error.response.data;
             }
