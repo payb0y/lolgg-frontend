@@ -12,7 +12,7 @@ const WinLoseBar = ({ wins, losses }) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "100%",
+                width: "100px",
                 height: "20px",
                 borderRadius: "4px",
                 overflow: "hidden",
