@@ -32,11 +32,11 @@ const Profile = () => {
                         alignItems: "center",
                         gap: "20px",
                     }}
-                    minWidth={{
+                    width={{
                         xs: "100%",
                         sm: "800px",
                         md: "800px",
-                        lg: "1200px",
+                        lg: "1150px",
                     }}
                 >
                     <SummonerBanner />
@@ -60,6 +60,7 @@ const Profile = () => {
                             md: "center",
                             lg: "flex-start",
                         }}
+                        width={"100%"}
                     >
                         <MatchHistory />
                     </Stack>

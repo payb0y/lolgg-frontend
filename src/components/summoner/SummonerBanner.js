@@ -51,12 +51,7 @@ const SummonerBanner = () => {
             {mainChampion && (
                 <Box
                     id="main-image"
-                    minWidth={{
-                        xs: "100%",
-                        sm: "100%",
-                        md: "100%",
-                        lg: "1200px",
-                    }}
+                    minWidth={"100%"}
                     sx={{
                         height: isMobile ? "fit-content" : 430,
                         backgroundImage: isMobile

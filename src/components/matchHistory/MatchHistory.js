@@ -50,6 +50,8 @@ const MatchHistory = () => {
                 md: "center",
                 lg: "flex-start",
             }}
+            width={"100%"}
+            justifyContent={"space-between"}
             spacing={1}
         >
             {matchHistory.length > 0 && (
@@ -72,10 +74,7 @@ const MatchHistory = () => {
                     />
                 </Stack>
             )}
-            <Stack
-                minWidth={{ xs: "100%", md: "800px", lg: "800px" }}
-                spacing={1}
-            >
+            <Stack spacing={1}>
                 {/* {matchHistory.length > 0 && (
                     <HistoryStats
                         matchHistory={matchHistory}
