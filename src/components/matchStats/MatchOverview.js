@@ -46,7 +46,12 @@ const MatchOverview = ({ match }) => {
     const blueRows = [];
     const rows = (participant) => {
         return createData(
-            <Stack alignItems="center" justifyContent="center" spacing={0}>
+            <Stack
+                alignItems="center"
+                justifyContent="center"
+                spacing={0}
+                height={"100%"}
+            >
                 <SummonerName summonerName={participant.summonerName} />
                 <Stack
                     direction="row"
@@ -92,7 +97,12 @@ const MatchOverview = ({ match }) => {
 
     const statTable = (tRow, team) => {
         return (
-            <TableContainer component={Paper}>
+            <TableContainer
+                component={Paper}
+                sx={{
+                    overflow: "hidden",
+                }}
+            >
                 <Table
                     size="small"
                     sx={{ minWidth: isMobile ? "" : 500 }}
