@@ -1,8 +1,8 @@
 import SummonerName from "../../parts/SummonerName";
 import CustomPaper from "../../UI/CustomPaper";
 import WinLoseBar from "../../UI/WinLoseBar";
-import { Card, Typography, Divider } from "@mui/material";
-import { useState } from "react";
+import { Card, Typography, Divider, Stack } from "@mui/material";
+import { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -10,82 +10,43 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { getSummonerIcon, getRecentlyPlayedWith } from "../../utils/Utils";
+import SummonerIcon from "../../parts/SummonerIcon";
 // import { getUserV1 } from "../../api/LeagueApi";
 
 const RecentAllies = ({ matchHistory, summonerData }) => {
-    const [showMore, setShowMore] = useState(false);
-    let allies = [];
-    matchHistory.forEach((match) => {
-        const me = match.info.participants.filter(
-            (participant) => participant.summonerId === summonerData.id
-        );
-        const f = match.info.participants.filter(
-            (participant) =>
-                participant.teamId === me[0].teamId &&
-                participant.summonerId !== summonerData.id
-        );
-        f.forEach((a) => {
-            if (
-                !allies.find(
-                    (ally) => ally.name === a.summonerName.toLowerCase()
-                )
-            ) {
-                allies.push({
-                    name: a.summonerName.toLowerCase(),
-                    wins: a.win ? 1 : 0,
-                    gamesPlayed: 1,
-                    id: a.summonerId,
-                    icon: null,
-                });
-            } else {
-                allies = allies.map((ally) =>
-                    ally.name === a.summonerName.toLowerCase()
-                        ? {
-                              ...ally,
-                              wins: a.win + ally.wins,
-                              gamesPlayed: ally.gamesPlayed + 1,
-                          }
-                        : ally
-                );
-            }
-        });
-    });
-    const sortedAllies = allies.sort((a, b) => b.gamesPlayed - a.gamesPlayed);
-    //filter out the summoner with less than 2 games
-    const filteredAlliesv1 = sortedAllies.filter(
-        (ally) => ally.gamesPlayed > 1
-    );
-    //get only the top 10
-    const filteredAllies = filteredAlliesv1.slice(0, 10);
-    //get icon from each ally
+    const [allies, setAllies] = useState([]);
     const createData = (name, wins, winrate) => {
         return { name, wins, winrate };
     };
-    const rows = filteredAllies.map((ally) =>
-        createData(
-            <SummonerName summonerName={ally.name} />,
-            <WinLoseBar
-                wins={ally.wins}
-                losses={ally.gamesPlayed - ally.wins}
-            />,
-            Math.round((ally.wins / ally.gamesPlayed) * 100) + "%"
-        )
-    );
-    // const getIcons = async () => {
-    //     const icons = await Promise.all(
-    //         filteredAllies.map(async (ally) => {
-    //             const summoner = await getUserV1(
-    //                 ally.name,
-    //                 summonerData.region
-    //             );
-    //             return summoner.profileIconId;
-    //         })
-    //     );
-    //     filteredAllies.forEach((ally, index) => {
-    //         ally.icon = icons[index];
-    //     });
-    // };
-    const nbrOfRows = showMore ? rows.length : 8;
+    let rows = [];
+    useEffect(() => {
+        const getAllies = async () => {
+            const filteredAllies = await getRecentlyPlayedWith(
+                matchHistory,
+                summonerData
+            );
+            setAllies(filteredAllies);
+            console.log(filteredAllies);
+        };
+
+        getAllies();
+    }, [matchHistory, summonerData]);
+    if (allies.length > 0) {
+        rows = allies.map((ally) =>
+            createData(
+                <Stack direction="row" alignItems="center" spacing={1}>
+                    <SummonerIcon icon={ally.icon} width={30} height={30} />
+                    <SummonerName summonerName={ally.name} />
+                </Stack>,
+                <WinLoseBar
+                    wins={ally.wins}
+                    losses={ally.gamesPlayed - ally.wins}
+                />,
+                Math.round((ally.wins / ally.gamesPlayed) * 100) + "%"
+            )
+        );
+    }
     return (
         <CustomPaper>
             <Card>
@@ -101,32 +62,37 @@ const RecentAllies = ({ matchHistory, summonerData }) => {
                     <Table size="small" aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell>Name</TableCell>
+                                <TableCell align="left">Name</TableCell>
                                 <TableCell align="left">W/L</TableCell>
                                 <TableCell align="left">Winrate</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.slice(0, nbrOfRows).map((row, index) => (
-                                <TableRow
-                                    key={index}
-                                    sx={{
-                                        "&:last-child td, &:last-child th": {
-                                            border: 0,
-                                        },
-                                    }}
-                                >
-                                    <TableCell component="th" scope="row">
-                                        {row.name}
-                                    </TableCell>
-                                    <TableCell align="right">
-                                        {row.wins}
-                                    </TableCell>
-                                    <TableCell align="left">
-                                        {row.winrate}
-                                    </TableCell>
-                                </TableRow>
-                            ))}
+                            {rows &&
+                                rows.map((row, index) => (
+                                    <TableRow
+                                        key={index}
+                                        sx={{
+                                            "&:last-child td, &:last-child th":
+                                                {
+                                                    border: 0,
+                                                },
+                                        }}
+                                    >
+                                        <TableCell
+                                            sx={{ padding: "0px" }}
+                                            align="right"
+                                        >
+                                            {row.name}
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            {row.wins}
+                                        </TableCell>
+                                        <TableCell align="left">
+                                            {row.winrate}
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
                         </TableBody>
                     </Table>
                 </TableContainer>

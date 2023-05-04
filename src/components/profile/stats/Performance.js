@@ -10,50 +10,10 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Typography, Divider } from "@mui/material";
 import WinLoseBar from "../../UI/WinLoseBar";
-import { useState } from "react";
 import Card from "@mui/material/Card";
+import { getPerformance } from "../../utils/Utils";
 const Perfomance = ({ matchHistory, summonerData }) => {
-    const [showMore, setShowMore] = useState(false);
-    let champions = [];
-    matchHistory.forEach((match) => {
-        match.info.participants.forEach((participant) => {
-            if (participant.summonerId === summonerData.id) {
-                if (
-                    !champions.find(
-                        (champion) => champion.name === participant.championName
-                    )
-                ) {
-                    champions.push({
-                        name: participant.championName,
-                        wins: participant.win ? 1 : 0,
-                        losses: !participant.win ? 1 : 0,
-                        kills: participant.kills,
-                        deaths: participant.deaths,
-                        assists: participant.assists,
-                        winRate: participant.win ? 100 : 0,
-                        gamesPlayed: 1,
-                    });
-                } else {
-                    champions = champions.map((champion) =>
-                        champion.name === participant.championName
-                            ? {
-                                  ...champion,
-                                  wins: champion.wins + participant.win,
-                                  losses: champion.losses + !participant.win,
-                                  kills: champion.kills + participant.kills,
-                                  deaths: champion.deaths + participant.deaths,
-                                  assists:
-                                      champion.assists + participant.assists,
-                                  gamesPlayed: champion.gamesPlayed + 1,
-                              }
-                            : champion
-                    );
-                }
-            }
-        });
-    });
-    const v1 = champions.sort((a, b) => b.gamesPlayed - a.gamesPlayed);
-
+    const v1 = getPerformance(matchHistory, summonerData);
     const createData = (
         icon,
         name,
@@ -95,7 +55,6 @@ const Perfomance = ({ matchHistory, summonerData }) => {
             champion.assists
         )
     );
-    const nbrOfRows = showMore ? rows.length : 8;
     return (
         <CustomPaper>
             <Card>
@@ -120,7 +79,7 @@ const Perfomance = ({ matchHistory, summonerData }) => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.slice(0, nbrOfRows).map((row, index) => (
+                            {rows.map((row, index) => (
                                 <TableRow
                                     key={index}
                                     sx={{
