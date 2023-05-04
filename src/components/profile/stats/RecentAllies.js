@@ -10,7 +10,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { getSummonerIcon, getRecentlyPlayedWith } from "../../utils/Utils";
+import { getRecentlyPlayedWith } from "../../utils/Utils";
 import SummonerIcon from "../../parts/SummonerIcon";
 // import { getUserV1 } from "../../api/LeagueApi";
 
@@ -27,7 +27,6 @@ const RecentAllies = ({ matchHistory, summonerData }) => {
                 summonerData
             );
             setAllies(filteredAllies);
-            console.log(filteredAllies);
         };
 
         getAllies();

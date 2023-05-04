@@ -23,7 +23,6 @@ const Profile = () => {
         };
         fetchSummonerData();
     }, [summonerName, region]);
-    console.log(summonerData);
     return (
         <>
             {notFound ? (

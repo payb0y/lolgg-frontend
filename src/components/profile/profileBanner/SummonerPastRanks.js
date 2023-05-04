@@ -23,7 +23,9 @@ const SummonerPastRanks = ({ summonerData, region }) => {
     useEffect(() => {
         const fetchPastRanks = async () => {
             const pastRanks = await getPastRanks(summonerData.name, region);
-            setPastRanks(pastRanks.data);
+            if (pastRanks.status === 200) {
+                setPastRanks(pastRanks.data);
+            }
         };
         fetchPastRanks();
     }, [summonerData.name, region]);

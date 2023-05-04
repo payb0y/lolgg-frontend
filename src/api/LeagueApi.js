@@ -1,6 +1,6 @@
 import axios from "axios";
 const retryDelay = 5000;
-const dev = false;
+const dev = true;
 export const baseURL = dev
     ? "http://localhost:8080/api/v1"
     : "https://lolgg.herokuapp.com/api/v1";
@@ -11,7 +11,6 @@ export const assetsURL = dev
 export async function getMatchHistoryV1(puuid, start, region, queue) {
     while (true) {
         try {
-            console.log(puuid, start, region, queue);
             const response = await axios.post(baseURL + "/matches", {
                 puuid: puuid,
                 region: region,
@@ -62,7 +61,6 @@ export async function getUserV1(summonerName, region) {
             if (response.status === 200) {
                 return response;
             }
-            console.log(response);
         } catch (error) {
             if (
                 error.response &&
@@ -161,7 +159,11 @@ export async function getPastRanks(summonerName, region) {
                 return response;
             }
         } catch (error) {
-            if (error.response && error.response.status !== 200) {
+            if (
+                error.response &&
+                error.response.status !== 200 &&
+                error.response.status !== 500
+            ) {
                 console.log(`Error: ${error}. Retrying...`);
                 await new Promise((resolve) => setTimeout(resolve, retryDelay));
             } else {

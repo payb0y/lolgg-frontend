@@ -47,7 +47,6 @@ export const getGameDate = (gameEndTimestamp) => {
 };
 export const getSummonerIcon = async (summonerName) => {
     return await getUserV1(summonerName, "EUW").then((res) => {
-        console.log(res.data.profileIconId);
         return res.data.profileIconId;
     });
 };
