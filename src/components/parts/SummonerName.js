@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { SummonerContext } from "../../store/SummonerContext";
+import { useParams } from "react-router-dom";
 
-const SummonerName = ({ summonerName, id }) => {
+const SummonerName = ({ summonerName, id, color }) => {
     const navigate = useNavigate();
-    const { region } = useContext(SummonerContext);
+    const { region } = useParams();
+
     const nameClickHandler = (e) => {
         navigate(`/profile/${region}/${id ? e.target.id : summonerName}`);
     };
@@ -12,8 +13,8 @@ const SummonerName = ({ summonerName, id }) => {
         <span
             onClick={nameClickHandler}
             id={id ? id : summonerName}
-            title={summonerName}
-            style={{ cursor: "pointer" }}
+            title={id ? id : summonerName}
+            style={{ cursor: "pointer", color: color ? color : "" }}
         >
             {summonerName}
         </span>

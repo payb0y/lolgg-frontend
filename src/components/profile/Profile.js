@@ -1,15 +1,14 @@
 import { Stack } from "@mui/material";
-import MatchHistory from "../matchHistory/MatchHistory";
+import MatchHistory from "./matchHistory/MatchHistory";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getUserV1 } from "../../api/LeagueApi";
-import { SummonerContext } from "../../store/SummonerContext";
-import SummonerBanner from "../summoner/SummonerBanner";
+import SummonerBanner from "./profileBanner/SummonerBanner";
 import Box from "@mui/material/Box";
+
 const Profile = () => {
     const { summonerName, region } = useParams();
     const [summonerData, setSummonerData] = useState(null);
-
     useEffect(() => {
         setSummonerData(null);
         const fetchSummonerData = async () => {
@@ -21,7 +20,7 @@ const Profile = () => {
         fetchSummonerData();
     }, [summonerName, region]);
     return (
-        <SummonerContext.Provider value={{ summonerData, region }}>
+        <>
             {summonerData && (
                 <Box
                     sx={{
@@ -35,11 +34,14 @@ const Profile = () => {
                     width={{
                         xs: "100%",
                         sm: "800px",
-                        md: "800px",
+                        md: "100%",
                         lg: "1150px",
                     }}
                 >
-                    <SummonerBanner />
+                    <SummonerBanner
+                        summonerData={summonerData}
+                        region={region}
+                    />
                     <Stack
                         spacing={3}
                         direction={{
@@ -62,11 +64,14 @@ const Profile = () => {
                         }}
                         width={"100%"}
                     >
-                        <MatchHistory />
+                        <MatchHistory
+                            summonerData={summonerData}
+                            region={region}
+                        />
                     </Stack>
                 </Box>
             )}
-        </SummonerContext.Provider>
+        </>
     );
 };
 export default Profile;
