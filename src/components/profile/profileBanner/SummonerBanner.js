@@ -1,5 +1,5 @@
 import React from "react";
-import SummonerIcon from "./SummonerIcon";
+import ProfileIcon from "./ProfileIcon";
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { getMainChampion } from "../../../api/LeagueApi";
@@ -88,7 +88,7 @@ const SummonerBanner = ({ summonerData, region }) => {
                                 backgroundColor: "rgba(0,0,0,0.5)",
                             }}
                         >
-                            <SummonerIcon
+                            <ProfileIcon
                                 summoner={summonerData}
                                 width={150}
                                 height={150}
