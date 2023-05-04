@@ -8,14 +8,15 @@ export const baseURL = dev
 export const assetsURL = dev
     ? "http://localhost:8080/images/"
     : "https://lolgg.herokuapp.com/images/";
-export async function getMatchHistoryV1(puuid, start, region, type) {
+export async function getMatchHistoryV1(puuid, start, region, queue) {
     while (true) {
         try {
+            console.log(puuid, start, region, queue);
             const response = await axios.post(baseURL + "/matches", {
                 puuid: puuid,
                 region: region,
                 start: start,
-                type: type === "All" ? "" : type,
+                queue: queue === 0 ? "" : queue,
             });
             if (response.status === 200) {
                 return response;
@@ -61,8 +62,13 @@ export async function getUserV1(summonerName, region) {
             if (response.status === 200) {
                 return response;
             }
+            console.log(response);
         } catch (error) {
-            if (error.response && error.response.status !== 200) {
+            if (
+                error.response &&
+                error.response.status !== 200 &&
+                error.response.status !== 500
+            ) {
                 console.log(`Error: ${error}. Retrying...`);
                 await new Promise((resolve) => setTimeout(resolve, retryDelay));
             } else {

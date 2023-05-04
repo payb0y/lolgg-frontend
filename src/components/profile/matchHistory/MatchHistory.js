@@ -10,21 +10,29 @@ import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
 
 import LinearProgress from "@mui/material/LinearProgress";
+import FilterMatch from "./historyFilter/FilterMatch";
 
 const MatchHistory = ({ summonerData, region }) => {
     const [matchHistory, setMatchHistory] = useState([]);
     const [alert, setAlert] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [start, setStart] = useState(0);
+    const [matchType, setMatchType] = useState(0);
+
+    const queueChangeHandler = (e) => {
+        setMatchType(e.target.value);
+        setStart(0);
+        setMatchHistory([]);
+        setAlert(false);
+    };
     useEffect(() => {
         const fetchMatchHistory = async () => {
-            const type = "All";
             setIsLoading(true);
             const matchHistoryResponse = await getMatchHistoryV1(
                 summonerData.puuid,
                 start,
                 region,
-                type
+                matchType
             );
             if (matchHistoryResponse.data.length < 10) {
                 setAlert(true);
@@ -59,7 +67,7 @@ const MatchHistory = ({ summonerData, region }) => {
         };
 
         fetchMatchHistory();
-    }, [summonerData.puuid, start, region]);
+    }, [summonerData.puuid, start, region, matchType]);
     const handleClick = () => {
         setStart(start + 10);
     };
@@ -100,6 +108,12 @@ const MatchHistory = ({ summonerData, region }) => {
                 </Box>
             ) : (
                 <Stack spacing={1}>
+                    <Box>
+                        <FilterMatch
+                            matchType={matchType}
+                            queueChangeHandler={queueChangeHandler}
+                        />
+                    </Box>
                     <Stack spacing={1}>
                         {matchHistory.map((match, index) => (
                             <Match

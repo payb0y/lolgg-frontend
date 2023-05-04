@@ -1,16 +1,26 @@
-//i want this to be a dropdown menu that filters the matches by the selected option
 import { Select, MenuItem } from "@mui/material";
-const FilterMatch = ({ type, handleChange }) => {
+const FilterMatch = ({ matchType, queueChangeHandler }) => {
+    const MATCH_TYPES = {
+        0: "All",
+        420: "Ranked Solo",
+        440: "Ranked Flex",
+        400: "Normal Draft",
+        430: "Normal Blind",
+        450: "ARAM",
+        700: "Clash",
+    };
     return (
         <Select
             autoWidth
-            value={type}
+            value={matchType}
             defaultValue={"EUW"}
-            onChange={handleChange}
+            onChange={queueChangeHandler}
         >
-            <MenuItem value="All">All</MenuItem>
-            <MenuItem value="ranked">Ranked</MenuItem>
-            <MenuItem value="normal">Normal</MenuItem>
+            {Object.keys(MATCH_TYPES).map((type) => (
+                <MenuItem key={type} value={type}>
+                    {MATCH_TYPES[type]}
+                </MenuItem>
+            ))}
         </Select>
     );
 };
