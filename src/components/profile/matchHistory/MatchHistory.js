@@ -18,12 +18,14 @@ const MatchHistory = ({ summonerData, region }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [start, setStart] = useState(0);
     const [matchType, setMatchType] = useState(0);
+    const [firstLoad, setFirstLoad] = useState(true);
 
     const queueChangeHandler = (e) => {
         setMatchType(e.target.value);
         setStart(0);
         setMatchHistory([]);
         setAlert(false);
+        setFirstLoad(true);
     };
     useEffect(() => {
         const fetchMatchHistory = async () => {
@@ -34,7 +36,11 @@ const MatchHistory = ({ summonerData, region }) => {
                 region,
                 matchType
             );
+
             if (matchHistoryResponse.data.length < 10) {
+                if (matchHistoryResponse.data.length === 0) {
+                    setFirstLoad(false);
+                }
                 setAlert(true);
             }
             const matchIds = await Promise.all(
@@ -46,21 +52,6 @@ const MatchHistory = ({ summonerData, region }) => {
                         (response) => response.data
                     )
                 )
-
-                // matchIds.map(
-                //     (matchId) =>
-                //         new Promise((resolve) =>
-                //             setTimeout(
-                //                 () =>
-                //                     resolve(
-                //                         getMatchDetailsV1(matchId, region).then(
-                //                             (response) => response.data
-                //                         )
-                //                     ),
-                //                 500
-                //             )
-                //         )
-                // )
             );
             setMatchHistory((pre) => [...pre, ...matchDetailsResponses]);
             setIsLoading(false);
@@ -102,7 +93,7 @@ const MatchHistory = ({ summonerData, region }) => {
                     summonerData={summonerData}
                 />
             </Stack>
-            {matchHistory.length === 0 ? (
+            {matchHistory.length === 0 && firstLoad ? (
                 <Box sx={{ width: "100%" }}>
                     <LinearProgress color="inherit" />
                 </Box>
@@ -125,9 +116,18 @@ const MatchHistory = ({ summonerData, region }) => {
                     </Stack>
 
                     {alert ? (
-                        <Alert variant="outlined" severity="info">
-                            No (more) matches found.
-                        </Alert>
+                        <Box
+                            width={{
+                                xs: "100%",
+                                sm: "100%",
+                                md: "800px",
+                                lg: "800px",
+                            }}
+                        >
+                            <Alert variant="outlined" severity="info">
+                                No (more) matches found.
+                            </Alert>
+                        </Box>
                     ) : (
                         <LoadingButton
                             loading={isLoading}
