@@ -19,7 +19,6 @@ const MatchHistory = ({ summonerData, region }) => {
     const [start, setStart] = useState(0);
     const [matchType, setMatchType] = useState(0);
     const [firstLoad, setFirstLoad] = useState(true);
-
     const queueChangeHandler = (e) => {
         setMatchType(e.target.value);
         setStart(0);
