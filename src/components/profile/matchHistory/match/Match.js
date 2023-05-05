@@ -23,8 +23,6 @@ const Match = ({ match, summonerData }) => {
     const handleDetailsClick = () => {
         setIsDetailsOpen(!isDetailsOpen);
     };
-    console.log(match);
-    console.log(currentParticipant);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     return (
