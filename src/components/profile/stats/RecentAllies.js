@@ -38,7 +38,7 @@ const RecentAllies = ({ matchHistory, summonerData }) => {
                     <SummonerIcon icon={ally.icon} width={30} height={30} />
                     <SummonerName summonerName={ally.name} />
                 </Stack>,
-                <Stack direction="row" alignItems="center" spacing={2}>
+                <Stack direction="row" alignItems="center" spacing={1}>
                     <WinLoseBar
                         wins={ally.wins}
                         losses={ally.gamesPlayed - ally.wins}

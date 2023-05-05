@@ -28,12 +28,13 @@ const MatchHistory = ({ summonerData, region }) => {
     };
     useEffect(() => {
         const fetchMatchHistory = async () => {
+            console.log(matchType);
             setIsLoading(true);
             const matchHistoryResponse = await getMatchHistoryV1(
                 summonerData.puuid,
                 start,
                 region,
-                matchType
+                parseInt(matchType)
             );
 
             if (matchHistoryResponse.data.length < 10) {
