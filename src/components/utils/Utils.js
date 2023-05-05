@@ -92,7 +92,7 @@ export const getRecentlyPlayedWith = async (matchHistory, summonerData) => {
         .filter((ally) => ally.gamesPlayed > 1)
         .sort((a, b) => b.gamesPlayed - a.gamesPlayed)
         .slice(0, 10);
-
+    // if the name if more than 8 characters, it will be cut off and replaced with "..."
     const promises = filteredAllies.map((ally) => getSummonerIcon(ally.name));
     const icons = await Promise.all(promises);
     filteredAllies.forEach((ally, index) => {
@@ -121,6 +121,9 @@ export const getPerformance = (matchHistory, summonerData) => {
                         assists: participant.assists,
                         winRate: participant.win ? 100 : 0,
                         gamesPlayed: 1,
+                        cs:
+                            participant.totalMinionsKilled +
+                            participant.neutralMinionsKilled,
                     });
                 } else {
                     champions = champions.map((champion) =>
@@ -134,6 +137,10 @@ export const getPerformance = (matchHistory, summonerData) => {
                                   assists:
                                       champion.assists + participant.assists,
                                   gamesPlayed: champion.gamesPlayed + 1,
+                                  cs:
+                                      champion.cs +
+                                      participant.totalMinionsKilled +
+                                      participant.neutralMinionsKilled,
                               }
                             : champion
                     );

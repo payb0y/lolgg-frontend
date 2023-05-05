@@ -38,11 +38,15 @@ const RecentAllies = ({ matchHistory, summonerData }) => {
                     <SummonerIcon icon={ally.icon} width={30} height={30} />
                     <SummonerName summonerName={ally.name} />
                 </Stack>,
-                <WinLoseBar
-                    wins={ally.wins}
-                    losses={ally.gamesPlayed - ally.wins}
-                />,
-                Math.round((ally.wins / ally.gamesPlayed) * 100) + "%"
+                <Stack direction="row" alignItems="center" spacing={2}>
+                    <WinLoseBar
+                        wins={ally.wins}
+                        losses={ally.gamesPlayed - ally.wins}
+                    />
+                    <span>
+                        {Math.round((ally.wins / ally.gamesPlayed) * 100) + "%"}
+                    </span>
+                </Stack>
             )
         );
     }
@@ -63,7 +67,6 @@ const RecentAllies = ({ matchHistory, summonerData }) => {
                             <TableRow>
                                 <TableCell align="left">Name</TableCell>
                                 <TableCell align="left">W/L</TableCell>
-                                <TableCell align="left">Winrate</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -86,9 +89,6 @@ const RecentAllies = ({ matchHistory, summonerData }) => {
                                         </TableCell>
                                         <TableCell align="right">
                                             {row.wins}
-                                        </TableCell>
-                                        <TableCell align="left">
-                                            {row.winrate}
                                         </TableCell>
                                     </TableRow>
                                 ))}

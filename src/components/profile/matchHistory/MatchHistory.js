@@ -70,7 +70,7 @@ const MatchHistory = ({ summonerData, region }) => {
                 md: "center",
                 lg: "flex-start",
             }}
-            width={"100%"}
+            width={{ xs: "100%", sm: "100%", md: "800px", lg: "1150px" }}
             justifyContent={"space-between"}
             spacing={1}
         >
@@ -104,7 +104,15 @@ const MatchHistory = ({ summonerData, region }) => {
                             queueChangeHandler={queueChangeHandler}
                         />
                     </Box>
-                    <Stack spacing={1}>
+                    <Stack
+                        spacing={1}
+                        width={{
+                            xs: "100%",
+                            sm: "100%",
+                            md: "800px",
+                            lg: "800px",
+                        }}
+                    >
                         {matchHistory.map((match, index) => (
                             <Match
                                 match={match}

@@ -75,6 +75,7 @@ const MatchGraph = ({ participants, participantId }) => {
                                     width={30}
                                     padding="normal"
                                     align="left"
+                                    sx={{ padding: "0px" }}
                                 >
                                     {row.summoner}
                                 </TableCell>
