@@ -50,7 +50,7 @@ const Perfomance = ({ matchHistory, summonerData }) => {
                 </Typography>
             </Stack>,
             champion.name,
-            <Stack direction="row" alignItems="center" spacing={0.5}>
+            <Stack direction="row" alignItems="center" spacing={0}>
                 <WinLoseBar wins={champion.wins} losses={champion.losses} />
                 <span>
                     {Math.round((champion.wins / champion.gamesPlayed) * 100) +
