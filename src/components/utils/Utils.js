@@ -73,7 +73,7 @@ export const getRecentlyPlayedWith = async (matchHistory, summonerData) => {
                     wins: a.win ? 1 : 0,
                     gamesPlayed: 1,
                     id: a.summonerId,
-                    icon: null,
+                    icon: a.profileIcon,
                 });
             } else {
                 allies = allies.map((ally) =>
@@ -92,13 +92,6 @@ export const getRecentlyPlayedWith = async (matchHistory, summonerData) => {
         .filter((ally) => ally.gamesPlayed > 1)
         .sort((a, b) => b.gamesPlayed - a.gamesPlayed)
         .slice(0, 10);
-    // if the name if more than 8 characters, it will be cut off and replaced with "..."
-    const promises = filteredAllies.map((ally) => getSummonerIcon(ally.name));
-    const icons = await Promise.all(promises);
-    filteredAllies.forEach((ally, index) => {
-        ally.icon = icons[index];
-    });
-
     return filteredAllies;
 };
 
