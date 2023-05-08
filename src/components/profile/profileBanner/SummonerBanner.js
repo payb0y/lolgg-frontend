@@ -48,7 +48,7 @@ const SummonerBanner = ({ summonerData, region, setSummonerData }) => {
                     id="main-image"
                     minWidth={"100%"}
                     sx={{
-                        height: isMobile ? "fit-content" : 500,
+                        height: isMobile ? "fit-content" : 455,
                         backgroundImage: isMobile
                             ? `url(https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${mainChampion.champion}_${mainChampion.skin}.jpg)`
                             : `url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${mainChampion.champion}_${mainChampion.skin}.jpg)`,
