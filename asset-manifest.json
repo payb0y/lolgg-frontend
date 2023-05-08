@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/static/css/main.9400d9a2.css",
-    "main.js": "/static/js/main.8c967905.js",
+    "main.js": "/static/js/main.834cc828.js",
     "static/media/logo.jpeg": "/static/media/logo.17d57e5ab90f66310eb9.jpeg",
     "static/media/404sadporo.png": "/static/media/404sadporo.e84af0c1ccc812cf44c4.png",
     "index.html": "/index.html"
   },
   "entrypoints": [
     "static/css/main.9400d9a2.css",
-    "static/js/main.8c967905.js"
+    "static/js/main.834cc828.js"
   ]
 }
