@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Match from "./match/Match";
-import { getMatchHistoryV1, getMatchDetailsV1 } from "../../../api/LeagueApi";
+import { getMatchHistoryV2 } from "../../../api/LeagueApi";
 import { useState } from "react";
 import { Stack } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -28,31 +28,18 @@ const MatchHistory = ({ summonerData, region }) => {
     };
     useEffect(() => {
         const fetchMatchHistory = async () => {
-            console.log(matchType);
             setIsLoading(true);
-            const matchHistoryResponse = await getMatchHistoryV1(
+            const matchHistoryResponse = await getMatchHistoryV2(
                 summonerData.puuid,
-                start,
                 region,
-                parseInt(matchType)
+                parseInt(matchType),
+                start,
+                10
             );
-
-            if (matchHistoryResponse.data.length < 10) {
-                if (matchHistoryResponse.data.length === 0) {
-                    setFirstLoad(false);
-                }
-                setAlert(true);
+            const matchDetailsResponses = [];
+            for (const key in matchHistoryResponse.data) {
+                matchDetailsResponses.push(matchHistoryResponse.data[key]);
             }
-            const matchIds = await Promise.all(
-                matchHistoryResponse.data.map((matchId) => matchId)
-            );
-            const matchDetailsResponses = await Promise.all(
-                matchIds.map((matchId) =>
-                    getMatchDetailsV1(matchId, region).then(
-                        (response) => response.data
-                    )
-                )
-            );
             setMatchHistory((pre) => [...pre, ...matchDetailsResponses]);
             setIsLoading(false);
         };
@@ -119,6 +106,9 @@ const MatchHistory = ({ summonerData, region }) => {
                                 match={match}
                                 key={index}
                                 summonerData={summonerData}
+                                currentParticipant={
+                                    match.info.currentParticipant
+                                }
                             />
                         ))}
                     </Stack>

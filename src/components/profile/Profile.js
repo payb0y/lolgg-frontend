@@ -2,9 +2,9 @@ import { Stack, Box, LinearProgress } from "@mui/material";
 import MatchHistory from "./matchHistory/MatchHistory";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getUserV1 } from "../../api/LeagueApi";
 import SummonerBanner from "./profileBanner/SummonerBanner";
 import SummonerNotFound from "../errorPages/SummonerNotFound";
+import { getSummonerV2 } from "../../api/LeagueApi";
 
 const Profile = () => {
     const { summonerName, region } = useParams();
@@ -14,9 +14,12 @@ const Profile = () => {
         setSummonerData(null);
         setNotFound(false);
         const fetchSummonerData = async () => {
-            const summonerResponse = await getUserV1(summonerName, region);
-            if (summonerResponse.status === 200 && summonerResponse) {
-                setSummonerData(summonerResponse.data);
+            const summonerResponseV1 = await getSummonerV2(
+                summonerName,
+                region
+            );
+            if (summonerResponseV1.status === 200 && summonerResponseV1) {
+                setSummonerData(summonerResponseV1.data);
             } else {
                 setNotFound(true);
             }
@@ -49,6 +52,7 @@ const Profile = () => {
                             <SummonerBanner
                                 summonerData={summonerData}
                                 region={region}
+                                setSummonerData={setSummonerData}
                             />
                             <Stack
                                 spacing={3}

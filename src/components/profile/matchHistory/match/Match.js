@@ -15,11 +15,8 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CustomPaper from "../../../UI/CustomPaper";
 
-const Match = ({ match, summonerData }) => {
+const Match = ({ match, currentParticipant }) => {
     const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-    const currentParticipant = match.info.participants.find(
-        (participant) => participant.summonerId === summonerData.id
-    );
     const handleDetailsClick = () => {
         setIsDetailsOpen(!isDetailsOpen);
     };

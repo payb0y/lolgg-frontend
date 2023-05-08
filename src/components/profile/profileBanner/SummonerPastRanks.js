@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
 import { Chip, Tooltip, Box } from "@mui/material";
-import { getPastRanks } from "../../../api/LeagueApi";
 import { styled } from "@mui/material/styles";
 import { tooltipClasses } from "@mui/material/Tooltip";
 
@@ -18,17 +16,8 @@ const HtmlTooltip = styled(({ className, ...props }) => (
         fontSize: theme.typography.pxToRem(13),
     },
 }));
-const SummonerPastRanks = ({ summonerData, region }) => {
-    const [pastRanks, setPastRanks] = useState([]);
-    useEffect(() => {
-        const fetchPastRanks = async () => {
-            const pastRanks = await getPastRanks(summonerData.name, region);
-            if (pastRanks.status === 200) {
-                setPastRanks(pastRanks.data);
-            }
-        };
-        fetchPastRanks();
-    }, [summonerData.name, region]);
+const SummonerPastRanks = ({ summonerData }) => {
+    const pastRanks = summonerData.pastRanks;
     const rankToolTip = (pastRankSolo, pastRankFlex) => {
         return (
             <>

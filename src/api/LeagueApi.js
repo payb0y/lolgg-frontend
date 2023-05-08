@@ -172,3 +172,48 @@ export async function getPastRanks(summonerName, region) {
         }
     }
 }
+
+export async function getSummonerV2(name, region) {
+    const response = await axios.post(
+        "https://lolgg.herokuapp.com/api/v2/summoner",
+        {
+            name: name,
+            region: region,
+        }
+    );
+    if (response.status === 200) {
+        return response;
+    }
+    return response;
+}
+
+export async function updateSummonerV2(name, region) {
+    const response = await axios.post(
+        "https://lolgg.herokuapp.com/api/v2/updateSummoner",
+        {
+            name: name,
+            region: region,
+        }
+    );
+    if (response.status === 200) {
+        return response;
+    }
+    return response;
+}
+
+export async function getMatchHistoryV2(puuid, region, type, start, count) {
+    const response = await axios.post(
+        "http://localhost:8080/api/v2/matchHistory",
+        {
+            puuid: puuid,
+            region: region,
+            type: type,
+            start: start,
+            count: count,
+        }
+    );
+    if (response.status === 200) {
+        return response;
+    }
+    return response;
+}

@@ -1,8 +1,7 @@
 import React from "react";
 import ProfileIcon from "./ProfileIcon";
 import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
-import { getMainChampion } from "../../../api/LeagueApi";
+import { useState, useEffect } from "react";
 import champions from "../../../data/champions.json";
 import CustomPaper from "../../UI/CustomPaper";
 import Stack from "@mui/material/Stack";
@@ -13,34 +12,28 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Box from "@mui/material/Box";
 import SummonerRank from "./SummonerRank";
 import SummonerPastRanks from "./SummonerPastRanks";
+import ProfileUpdate from "./ProfileUpdate";
 
-const SummonerBanner = ({ summonerData, region }) => {
+const SummonerBanner = ({ summonerData, region, setSummonerData }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-    const [mainChampion, setMainChampion] = useState(null);
     const HandleLive = () => {
         setLiveMatchVisible(true);
     };
+    const [mainChampion, setMainChampion] = useState(null);
     const [liveMatchVisible, setLiveMatchVisible] = useState(false);
-    useEffect(() => {
-        setMainChampion(null);
-        const fetchMainChampion = async () => {
-            const mainId = await getMainChampion(summonerData.id, region);
-            if (mainId.status === 200 && mainId) {
-                const champion = champions.keys[mainId.data[0].championId];
-                const skin =
-                    champions.data[champion].skins[
-                        Math.floor(
-                            Math.random() *
-                                champions.data[champion].skins.length
-                        )
-                    ];
-                setMainChampion({ champion: champion, skin: skin.num });
-            }
-        };
-        fetchMainChampion();
-    }, [summonerData, region]);
 
+    useEffect(() => {
+        const champion =
+            champions.keys[summonerData.championMasteries[0].championId];
+        const skin =
+            champions.data[champion].skins[
+                Math.floor(
+                    Math.random() * champions.data[champion].skins.length
+                )
+            ];
+        setMainChampion({ champion: champion, skin: skin.num });
+    }, [summonerData.championMasteries]);
     return (
         <>
             {liveMatchVisible && (
@@ -55,7 +48,7 @@ const SummonerBanner = ({ summonerData, region }) => {
                     id="main-image"
                     minWidth={"100%"}
                     sx={{
-                        height: isMobile ? "fit-content" : 430,
+                        height: isMobile ? "fit-content" : 500,
                         backgroundImage: isMobile
                             ? `url(https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${mainChampion.champion}_${mainChampion.skin}.jpg)`
                             : `url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${mainChampion.champion}_${mainChampion.skin}.jpg)`,
@@ -75,10 +68,7 @@ const SummonerBanner = ({ summonerData, region }) => {
                         justifyContent={"flex-start"}
                         spacing={1}
                     >
-                        <SummonerPastRanks
-                            summonerData={summonerData}
-                            region={region}
-                        />
+                        <SummonerPastRanks summonerData={summonerData} />
                         <CustomPaper
                             sx={{
                                 display: "flex",
@@ -88,6 +78,10 @@ const SummonerBanner = ({ summonerData, region }) => {
                                 backgroundColor: "rgba(0,0,0,0.5)",
                             }}
                         >
+                            <ProfileUpdate
+                                summonerData={summonerData}
+                                setSummonerData={setSummonerData}
+                            />
                             <ProfileIcon
                                 summoner={summonerData}
                                 width={150}
@@ -105,10 +99,7 @@ const SummonerBanner = ({ summonerData, region }) => {
                                 Live Match
                             </Button>
                         </CustomPaper>
-                        <SummonerRank
-                            summonerData={summonerData}
-                            region={region}
-                        />
+                        <SummonerRank summonerData={summonerData} />
                     </Stack>
                 </Box>
             )}
