@@ -45,7 +45,13 @@ const MatchHistory = ({ summonerData, region }) => {
         };
 
         fetchMatchHistory();
-    }, [summonerData.puuid, start, region, matchType]);
+    }, [
+        summonerData.puuid,
+        start,
+        region,
+        matchType,
+        summonerData.updatedTime,
+    ]);
     const handleClick = () => {
         setStart(start + 10);
     };

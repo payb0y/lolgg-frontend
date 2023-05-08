@@ -201,6 +201,22 @@ export async function updateSummonerV2(name, region) {
     return response;
 }
 
+export async function updateMatchHistoryV2(puuid, region, type, start, count) {
+    const response = await axios.post(
+        "https://lolgg.herokuapp.com/api/v2/updateMatchHistory",
+        {
+            puuid: puuid,
+            region: region,
+            type: type,
+            start: start,
+            count: count,
+        }
+    );
+    if (response.status === 200) {
+        return response;
+    }
+    return response;
+}
 export async function getMatchHistoryV2(puuid, region, type, start, count) {
     const response = await axios.post(
         "https://lolgg.herokuapp.com/api/v2/matchHistory",

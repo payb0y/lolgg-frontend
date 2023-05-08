@@ -1,5 +1,5 @@
 import RefreshIcon from "@mui/icons-material/Refresh";
-import { updateSummonerV2 } from "../../../api/LeagueApi";
+import { updateSummonerV2, updateMatchHistoryV2 } from "../../../api/LeagueApi";
 import { Typography, Stack, Box, LinearProgress } from "@mui/material";
 import { useState } from "react";
 import UpdateTimer from "./UpdateTimer";
@@ -14,13 +14,20 @@ const ProfileUpdate = ({ summonerData, setSummonerData }) => {
                 summonerData.name,
                 summonerData.region
             );
+
             if (summonerResponse.status === 200 && summonerResponse) {
                 //if the response is a number, it means that the summoner is not ready to be updated
                 if (typeof summonerResponse.data === "number") {
-                    console.log(summonerResponse.data);
                     setTimeBeforeNextUpdate(summonerResponse.data);
                     return;
                 }
+                await updateMatchHistoryV2(
+                    summonerResponse.data.puuid,
+                    summonerResponse.data.region,
+                    0,
+                    0,
+                    10
+                );
                 setSummonerData(summonerResponse.data);
             }
             setLoading(false);
