@@ -14,7 +14,7 @@ import SummonerRank from "./SummonerRank";
 import SummonerPastRanks from "./SummonerPastRanks";
 import ProfileUpdate from "./ProfileUpdate";
 
-const SummonerBanner = ({ summonerData, region, setSummonerData }) => {
+const SummonerBanner = ({ summonerData, region }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     const HandleLive = () => {
@@ -48,7 +48,7 @@ const SummonerBanner = ({ summonerData, region, setSummonerData }) => {
                     id="main-image"
                     minWidth={"100%"}
                     sx={{
-                        height: isMobile ? "fit-content" : 455,
+                        height: isMobile ? "fit-content" : "100%",
                         backgroundImage: isMobile
                             ? `url(https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${mainChampion.champion}_${mainChampion.skin}.jpg)`
                             : `url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${mainChampion.champion}_${mainChampion.skin}.jpg)`,
@@ -76,12 +76,10 @@ const SummonerBanner = ({ summonerData, region, setSummonerData }) => {
                                 justifyContent: "center",
                                 alignItems: "center",
                                 backgroundColor: "rgba(0,0,0,0.5)",
+                                gap: "5px",
                             }}
                         >
-                            <ProfileUpdate
-                                summonerData={summonerData}
-                                setSummonerData={setSummonerData}
-                            />
+                            <ProfileUpdate summonerData={summonerData} />
                             <ProfileIcon
                                 summoner={summonerData}
                                 width={150}

@@ -1,10 +1,18 @@
 import RefreshIcon from "@mui/icons-material/Refresh";
-import { updateSummonerV2, updateMatchHistoryV2 } from "../../../api/LeagueApi";
+import {
+    updateSummonerV2,
+    updateMatchHistoryV2,
+    getMatchHistoryV2,
+} from "../../../api/LeagueApi";
 import { Typography, Stack, Box, LinearProgress } from "@mui/material";
 import { useState } from "react";
 import UpdateTimer from "./UpdateTimer";
+import { profileActions } from "../../../store";
+import { useDispatch } from "react-redux";
+import CustomPaper from "../../UI/CustomPaper";
 
-const ProfileUpdate = ({ summonerData, setSummonerData }) => {
+const ProfileUpdate = ({ summonerData }) => {
+    const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const [timeBeforeNextUpdate, setTimeBeforeNextUpdate] = useState(0);
     const refreshHandler = () => {
@@ -18,19 +26,43 @@ const ProfileUpdate = ({ summonerData, setSummonerData }) => {
             if (summonerResponse.status === 200 && summonerResponse) {
                 //if the response is a number, it means that the summoner is not ready to be updated
                 if (typeof summonerResponse.data === "number") {
+                    setLoading(false);
                     setTimeBeforeNextUpdate(summonerResponse.data);
                     return;
                 }
-                await updateMatchHistoryV2(
+                const reponse = await updateMatchHistoryV2(
                     summonerResponse.data.puuid,
                     summonerResponse.data.region,
                     0,
                     0,
                     10
                 );
-                setSummonerData(summonerResponse.data);
+                if (reponse.length !== 0) {
+                    const matchHistoryResponse = await getMatchHistoryV2(
+                        summonerData.puuid,
+                        summonerData.region,
+                        0,
+                        0,
+                        10
+                    );
+                    const matchDetailsResponses = [];
+                    for (const key in matchHistoryResponse.data) {
+                        matchDetailsResponses.push(
+                            matchHistoryResponse.data[key]
+                        );
+                    }
+                    dispatch(
+                        profileActions.setMatchHistory([
+                            ...matchDetailsResponses,
+                        ])
+                    );
+                }
+
+                dispatch(profileActions.setSummonerData(summonerResponse.data));
+                //setMatchHistory(matchDetailsResponses);
+                //setSummonerData(summonerResponse.data);
+                setLoading(false);
             }
-            setLoading(false);
         };
         updateSummonerData();
     };
@@ -52,13 +84,23 @@ const ProfileUpdate = ({ summonerData, setSummonerData }) => {
     }
 
     return (
-        <div>
+        <CustomPaper
+            sx={{
+                width: "100%",
+                height: "25px",
+                backgroundColor: "rgba(0,0,0,0.8)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+            }}
+        >
             {timeBeforeNextUpdate <= 0 ? (
                 <Stack
                     direction="row"
                     alignItems="center"
                     justifyContent="center"
                     width={"100%"}
+                    height={"25px"}
                 >
                     {!loading ? (
                         <>
@@ -72,14 +114,18 @@ const ProfileUpdate = ({ summonerData, setSummonerData }) => {
                                     e.target.style.color = "grey";
                                 }}
                             />
-                            <Typography variant="body1" fontSize={12}>
+                            <Typography
+                                variant="body1"
+                                color="text.primary"
+                                fontSize={12}
+                            >
                                 Updated {time}
                             </Typography>
                         </>
                     ) : (
                         <Box
                             sx={{
-                                width: "120px",
+                                width: "100%",
                             }}
                         >
                             <LinearProgress
@@ -98,7 +144,7 @@ const ProfileUpdate = ({ summonerData, setSummonerData }) => {
                     setTimeBeforeNextUpdate={setTimeBeforeNextUpdate}
                 />
             )}
-        </div>
+        </CustomPaper>
     );
 };
 export default ProfileUpdate;

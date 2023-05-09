@@ -5,34 +5,39 @@ import { useState, useEffect } from "react";
 import SummonerBanner from "./profileBanner/SummonerBanner";
 import SummonerNotFound from "../errorPages/SummonerNotFound";
 import { getSummonerV2 } from "../../api/LeagueApi";
-
+import { profileActions } from "../../store";
+import { useDispatch, useSelector } from "react-redux";
 const Profile = () => {
     const { summonerName, region } = useParams();
-    const [summonerData, setSummonerData] = useState(null);
     const [notFound, setNotFound] = useState(false);
+    const profile = useSelector((state) => state.profile);
+    const dispatch = useDispatch();
     useEffect(() => {
-        setSummonerData(null);
         setNotFound(false);
+        dispatch(profileActions.emptySummonerData());
         const fetchSummonerData = async () => {
             const summonerResponseV1 = await getSummonerV2(
                 summonerName,
                 region
             );
             if (summonerResponseV1.status === 200 && summonerResponseV1) {
-                setSummonerData(summonerResponseV1.data);
+                dispatch(
+                    profileActions.setSummonerData(summonerResponseV1.data)
+                );
+                dispatch(profileActions.setRegion(region));
             } else {
                 setNotFound(true);
             }
         };
         fetchSummonerData();
-    }, [summonerName, region]);
+    }, [summonerName, region, dispatch]);
     return (
         <>
             {notFound ? (
                 <SummonerNotFound name={summonerName} />
             ) : (
                 <>
-                    {summonerData ? (
+                    {profile.summonerData ? (
                         <Box
                             sx={{
                                 margin: "auto",
@@ -50,9 +55,8 @@ const Profile = () => {
                             }}
                         >
                             <SummonerBanner
-                                summonerData={summonerData}
-                                region={region}
-                                setSummonerData={setSummonerData}
+                                summonerData={profile.summonerData}
+                                region={profile.region}
                             />
                             <Stack
                                 spacing={3}
@@ -77,8 +81,8 @@ const Profile = () => {
                                 width={"100%"}
                             >
                                 <MatchHistory
-                                    summonerData={summonerData}
-                                    region={region}
+                                    summonerData={profile.summonerData}
+                                    region={profile.region}
                                 />
                             </Stack>
                         </Box>

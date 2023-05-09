@@ -11,18 +11,22 @@ import Alert from "@mui/material/Alert";
 
 import LinearProgress from "@mui/material/LinearProgress";
 import FilterMatch from "./historyFilter/FilterMatch";
-
+import { useDispatch, useSelector } from "react-redux";
+import { profileActions } from "../../../store";
 const MatchHistory = ({ summonerData, region }) => {
-    const [matchHistory, setMatchHistory] = useState([]);
     const [alert, setAlert] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [start, setStart] = useState(0);
     const [matchType, setMatchType] = useState(0);
     const [firstLoad, setFirstLoad] = useState(true);
+    const dispatch = useDispatch();
+    const matchHistory = useSelector((state) => state.profile.matchHistory);
+    const profile = useSelector((state) => state.profile);
+    console.log(profile);
     const queueChangeHandler = (e) => {
         setMatchType(e.target.value);
+        dispatch(profileActions.setMatchHistory([]));
         setStart(0);
-        setMatchHistory([]);
         setAlert(false);
         setFirstLoad(true);
     };
@@ -40,18 +44,21 @@ const MatchHistory = ({ summonerData, region }) => {
             for (const key in matchHistoryResponse.data) {
                 matchDetailsResponses.push(matchHistoryResponse.data[key]);
             }
-            setMatchHistory((pre) => [...pre, ...matchDetailsResponses]);
+            if (matchDetailsResponses.length === 0) {
+                setFirstLoad(false);
+                setAlert(true);
+            }
+            dispatch(
+                profileActions.setMatchHistory([
+                    ...matchHistory,
+                    ...matchDetailsResponses,
+                ])
+            );
             setIsLoading(false);
         };
 
         fetchMatchHistory();
-    }, [
-        summonerData.puuid,
-        start,
-        region,
-        matchType,
-        summonerData.updatedTime,
-    ]);
+    }, [summonerData.puuid, start, region, matchType, dispatch]);
     const handleClick = () => {
         setStart(start + 10);
     };
