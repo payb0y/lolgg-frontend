@@ -203,7 +203,7 @@ export async function updateSummonerV2(name, region) {
 
 export async function updateMatchHistoryV2(puuid, region, type, start, count) {
     const response = await axios.post(
-        "http://localhost:8080/api/v2/updateMatchHistory",
+        "https://lolgg.herokuapp.com/api/v2/updateMatchHistory",
         {
             puuid: puuid,
             region: region,
