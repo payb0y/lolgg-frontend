@@ -2,22 +2,31 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-const SummonerName = ({ summonerName, id, color }) => {
-    const navigate = useNavigate();
-    const { region } = useParams();
+const SummonerName = ({ summonerName, tagLine, id, color, blank }) => {
+  const navigate = useNavigate();
+  const { region } = useParams();
 
-    const nameClickHandler = (e) => {
-        navigate(`/profile/${region}/${id ? e.target.id : summonerName}`);
-    };
-    return (
-        <span
-            onClick={nameClickHandler}
-            id={id ? id : summonerName}
-            title={id ? id : summonerName}
-            style={{ cursor: "pointer", color: color ? color : "" }}
-        >
-            {summonerName}
-        </span>
-    );
+  const nameClickHandler = (e) => {
+    if (blank) {
+      //open in new tab
+      window.open(
+        `http://localhost:3000/#/profile/EUW/${summonerName}-${tagLine}`
+      );
+    } else {
+      navigate(
+        `/profile/${region}/${id ? e.target.id : summonerName}-${tagLine}`
+      );
+    }
+  };
+  return (
+    <span
+      onClick={nameClickHandler}
+      id={id ? id : summonerName}
+      title={id ? id : summonerName}
+      style={{ cursor: "pointer", color: color ? color : "" }}
+    >
+      {summonerName}
+    </span>
+  );
 };
 export default SummonerName;
