@@ -1,6 +1,6 @@
 import axios from "axios";
 const retryDelay = 5000;
-const dev = true;
+const dev = false;
 export const baseURL = dev
   ? "http://localhost:8080/api/v1"
   : "https://lolgg.herokuapp.com/api/v1";
@@ -174,11 +174,14 @@ export async function getPastRanks(summonerName, region) {
 }
 
 export async function getSummonerV2(gameName, tagLine, region) {
-  const response = await axios.post("http://localhost:8080/api/v2/summoner", {
-    gameName: gameName,
-    tagLine: tagLine,
-    region: region,
-  });
+  const response = await axios.post(
+    "https://lolgg.herokuapp.com/api/v2/summoner",
+    {
+      gameName: gameName,
+      tagLine: tagLine,
+      region: region,
+    }
+  );
   if (response.status === 200) {
     return response;
   }
@@ -202,7 +205,7 @@ export async function updateSummonerV2(gameName, tagLine, region) {
 
 export async function updateMatchHistoryV2(puuid, region, type, start, count) {
   const response = await axios.post(
-    "http://localhost:8080/api/v2/updateMatchHistory",
+    "https://lolgg.herokuapp.com/api/v2/updateMatchHistory",
     {
       puuid: puuid,
       region: region,
@@ -218,7 +221,7 @@ export async function updateMatchHistoryV2(puuid, region, type, start, count) {
 }
 export async function getMatchHistoryV2(puuid, region, type, start, count) {
   const response = await axios.post(
-    "http://localhost:8080/api/v2/matchHistory",
+    "https://lolgg.herokuapp.com/api/v2/matchHistory",
     {
       puuid: puuid,
       region: region,
