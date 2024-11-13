@@ -36,6 +36,7 @@ const Search = () => {
                 label="Summoner"
                 variant="outlined"
                 autoComplete="off"
+                placeholder="Username#Tag"
                 onKeyPress={(e) => {
                     if (e.key === "Enter") {
                         onSearch(e.target.value);
