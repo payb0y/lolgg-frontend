@@ -19,7 +19,7 @@ const MatchRunesFull = ({ participant }) => {
   );
   participant.perks.styles[0].selections.forEach((selection) => {
     primaryRunesNames.push(
-      primaryStyleName.slots
+      primaryStyleName?.slots
         .map((slot) => {
           return slot.runes.find((rune) => rune.id === selection.perk);
         })
@@ -28,7 +28,7 @@ const MatchRunesFull = ({ participant }) => {
   });
   participant.perks.styles[1].selections.forEach((selection) => {
     secondaryRunesNames.push(
-      secondaryStyleName.slots
+      secondaryStyleName?.slots
         .map((slot) => {
           return slot.runes.find((rune) => rune.id === selection.perk);
         })
@@ -65,7 +65,12 @@ const MatchRunesFull = ({ participant }) => {
             </Stack>
             <Stack direction="row" spacing={0.3}>
               {secondaryRunesNames.map((rune, index) => (
-                <Rune rune={rune[0]} width={35} height={35} key={index} />
+                <Rune
+                  rune={rune ? rune[0] : null}
+                  width={35}
+                  height={35}
+                  key={index}
+                />
               ))}
             </Stack>
             <Stack direction="row" spacing={0.3}>
