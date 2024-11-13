@@ -190,7 +190,7 @@ export async function getSummonerV2(gameName, tagLine, region) {
 
 export async function updateSummonerV2(gameName, tagLine, region) {
   const response = await axios.post(
-    "http://localhost:8080/api/v2/updateSummoner",
+    "https://lolgg.herokuapp.com/api/v2/updateSummoner",
     {
       gameName: gameName,
       tagLine: tagLine,
