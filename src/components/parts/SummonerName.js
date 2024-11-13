@@ -8,9 +8,9 @@ const SummonerName = ({ summonerName, tagLine, id, color, blank }) => {
 
   const nameClickHandler = (e) => {
     if (blank) {
-      //open in new tab
+      //open in new tab but
       window.open(
-        `http://localhost:3000/#/profile/EUW/${summonerName}-${tagLine}`
+        `https://lolgg.tech/#/profile/${region}/${summonerName}-${tagLine}`
       );
     } else {
       navigate(
