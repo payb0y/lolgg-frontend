@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/lolgg/static/css/main.5d22be51.css",
-    "main.js": "/lolgg/static/js/main.549d379c.js",
-    "static/media/logo.jpeg": "/lolgg/static/media/logo.17d57e5ab90f66310eb9.jpeg",
-    "static/media/404sadporo.png": "/lolgg/static/media/404sadporo.e84af0c1ccc812cf44c4.png",
-    "index.html": "/lolgg/index.html",
-    "main.5d22be51.css.map": "/lolgg/static/css/main.5d22be51.css.map",
-    "main.549d379c.js.map": "/lolgg/static/js/main.549d379c.js.map"
+    "main.css": "/static/css/main.5d22be51.css",
+    "main.js": "/static/js/main.9a856972.js",
+    "static/media/logo.jpeg": "/static/media/logo.17d57e5ab90f66310eb9.jpeg",
+    "static/media/404sadporo.png": "/static/media/404sadporo.e84af0c1ccc812cf44c4.png",
+    "index.html": "/index.html",
+    "main.5d22be51.css.map": "/static/css/main.5d22be51.css.map",
+    "main.9a856972.js.map": "/static/js/main.9a856972.js.map"
   },
   "entrypoints": [
     "static/css/main.5d22be51.css",
-    "static/js/main.549d379c.js"
+    "static/js/main.9a856972.js"
   ]
 }
