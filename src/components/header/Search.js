@@ -33,10 +33,9 @@ const Search = () => {
             </Select>
             <TextField
                 id="outlined-basic"
-                label="Summoner"
+                label="Summoner-Tag"
                 variant="outlined"
                 autoComplete="off"
-                placeholder="Username#Tag"
                 onKeyPress={(e) => {
                     if (e.key === "Enter") {
                         onSearch(e.target.value);
