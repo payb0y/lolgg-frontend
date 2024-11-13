@@ -19,7 +19,8 @@ const ProfileUpdate = ({ summonerData }) => {
         const updateSummonerData = async () => {
             setLoading(true);
             const summonerResponse = await updateSummonerV2(
-                summonerData.name,
+                summonerData.gameName,
+                summonerData.tagLine,
                 summonerData.region
             );
 
