@@ -66,7 +66,7 @@ const SummonerBanner = ({ summonerData, region }) => {
             justifyContent={"flex-start"}
             spacing={1}
           >
-            {/* <SummonerPastRanks summonerData={summonerData} /> */}
+            <SummonerPastRanks summonerData={summonerData} />
             <CustomPaper
               sx={{
                 display: "flex",
