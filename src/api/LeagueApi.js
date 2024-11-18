@@ -77,7 +77,7 @@ export async function getUserV1(summonerName, region) {
 }
 export async function getLiveMatchV1(puuid, region) {
   return await axios
-    .post(baseURL + "/liveMatch", {
+    .post(baseURL + "/v1/liveMatch", {
       summonerId: puuid,
       region: region,
     })
