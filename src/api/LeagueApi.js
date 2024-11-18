@@ -2,8 +2,8 @@ import axios from "axios";
 const retryDelay = 5000;
 const dev = false;
 export const baseURL = dev
-  ? "http://localhost:8080/api/v1"
-  : "https://lolgg.herokuapp.com/api/v1";
+  ? "http://localhost:8080/api"
+  : "https://lolgg.herokuapp.com/api";
 
 export const assetsURL = dev
   ? "http://localhost:8080/images/"
@@ -11,7 +11,7 @@ export const assetsURL = dev
 export async function getMatchHistoryV1(puuid, start, region, queue) {
   while (true) {
     try {
-      const response = await axios.post(baseURL + "/matches", {
+      const response = await axios.post(baseURL + "/v1/matches", {
         puuid: puuid,
         region: region,
         start: start,
@@ -33,7 +33,7 @@ export async function getMatchHistoryV1(puuid, start, region, queue) {
 export async function getMatchDetailsV1(matchId, region) {
   while (true) {
     try {
-      const response = await axios.post(baseURL + "/match", {
+      const response = await axios.post(baseURL + "/v1/match", {
         matchId: matchId,
         region: region,
       });
@@ -54,7 +54,7 @@ export async function getMatchDetailsV1(matchId, region) {
 export async function getUserV1(summonerName, region) {
   while (true) {
     try {
-      const response = await axios.post(baseURL + "/summoner", {
+      const response = await axios.post(baseURL + "/v1/summoner", {
         summonerName: summonerName,
         region: region,
       });
@@ -91,7 +91,7 @@ export async function getLiveMatchV1(puuid, region) {
 export async function getSummonerLeagueV1(summonerId, region) {
   while (true) {
     try {
-      const response = await axios.post(baseURL + "/summoner/league", {
+      const response = await axios.post(baseURL + "/v1/summoner/league", {
         summonerId: summonerId,
         region: region,
       });
@@ -111,7 +111,7 @@ export async function getSummonerLeagueV1(summonerId, region) {
 export async function getMatchTimelineV1(matchId, region) {
   while (true) {
     try {
-      const response = await axios.post(baseURL + "/match/timeline", {
+      const response = await axios.post(baseURL + "/v1/match/timeline", {
         matchId: matchId,
         region: region,
       });
@@ -131,7 +131,7 @@ export async function getMatchTimelineV1(matchId, region) {
 export async function getMainChampion(summonerId, region) {
   while (true) {
     try {
-      const response = await axios.post(baseURL + "/mainChampion", {
+      const response = await axios.post(baseURL + "/v1/mainChampion", {
         summonerId: summonerId,
         region: region,
       });
@@ -151,7 +151,7 @@ export async function getMainChampion(summonerId, region) {
 export async function getPastRanks(summonerName, region) {
   while (true) {
     try {
-      const response = await axios.post(baseURL + "/summoner/pastRanks", {
+      const response = await axios.post(baseURL + "/v1/summoner/pastRanks", {
         summonerName: summonerName,
         region: region,
       });
@@ -174,14 +174,11 @@ export async function getPastRanks(summonerName, region) {
 }
 
 export async function getSummonerV2(gameName, tagLine, region) {
-  const response = await axios.post(
-    "https://lolgg.herokuapp.com/api/v2/summoner",
-    {
-      gameName: gameName,
-      tagLine: tagLine,
-      region: region,
-    }
-  );
+  const response = await axios.post(baseURL + "/v2/summoner", {
+    gameName: gameName,
+    tagLine: tagLine,
+    region: region,
+  });
   if (response.status === 200) {
     return response;
   }
@@ -189,14 +186,11 @@ export async function getSummonerV2(gameName, tagLine, region) {
 }
 
 export async function updateSummonerV2(gameName, tagLine, region) {
-  const response = await axios.post(
-    "https://lolgg.herokuapp.com/api/v2/updateSummoner",
-    {
-      gameName: gameName,
-      tagLine: tagLine,
-      region: region,
-    }
-  );
+  const response = await axios.post(baseURL + "/v2/updateSummoner", {
+    gameName: gameName,
+    tagLine: tagLine,
+    region: region,
+  });
   if (response.status === 200) {
     return response;
   }
@@ -204,32 +198,26 @@ export async function updateSummonerV2(gameName, tagLine, region) {
 }
 
 export async function updateMatchHistoryV2(puuid, region, type, start, count) {
-  const response = await axios.post(
-    "https://lolgg.herokuapp.com/api/v2/updateMatchHistory",
-    {
-      puuid: puuid,
-      region: region,
-      type: type,
-      start: start,
-      count: count,
-    }
-  );
+  const response = await axios.post(baseURL + "/v2/updateMatchHistory", {
+    puuid: puuid,
+    region: region,
+    type: type,
+    start: start,
+    count: count,
+  });
   if (response.status === 200) {
     return response;
   }
   return response;
 }
 export async function getMatchHistoryV2(puuid, region, type, start, count) {
-  const response = await axios.post(
-    "https://lolgg.herokuapp.com/api/v2/matchHistory",
-    {
-      puuid: puuid,
-      region: region,
-      type: type,
-      start: start,
-      count: count,
-    }
-  );
+  const response = await axios.post(baseURL + "/v2/matchHistory", {
+    puuid: puuid,
+    region: region,
+    type: type,
+    start: start,
+    count: count,
+  });
   if (response.status === 200) {
     return response;
   }
