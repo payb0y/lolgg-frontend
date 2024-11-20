@@ -9,8 +9,9 @@ const Search = () => {
   };
   const navigate = useNavigate();
   const onSearch = (value) => {
-    const gameName = value.split("#")[0];
-    const tagLine = value.split("#")[1];
+    const parts = value.split("#").map((part) => part.trim()); // Split and trim both parts
+    const gameName = encodeURIComponent(parts[0]); // Encode gameName to handle special characters
+    const tagLine = parts.length > 1 ? encodeURIComponent(parts[1]) : ""; // Encode tagLine, handle absence of tagLine
     navigate(`/profile/${region}/${gameName}-${tagLine}`);
   };
   return (
