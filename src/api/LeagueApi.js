@@ -1,6 +1,6 @@
 import axios from "axios";
 const retryDelay = 5000;
-const dev = false;
+const dev = true;
 export const baseURL = dev
   ? "http://localhost:8080/api"
   : "https://lolgg.herokuapp.com/api";

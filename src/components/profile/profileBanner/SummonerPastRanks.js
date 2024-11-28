@@ -1,6 +1,7 @@
 import { Chip, Tooltip, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { tooltipClasses } from "@mui/material/Tooltip";
+import { v4 as uuidv4 } from "uuid";
 
 const HtmlTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -40,10 +41,10 @@ const SummonerPastRanks = ({ summonerData }) => {
         <HtmlTooltip
           title={rankToolTip(pastRank.soloDuoRank, pastRank.flexRank)}
           placement="top"
-          key={pastRank.season}
+          key={uuidv4()}
         >
           <Chip
-            key={pastRank.season}
+            key={uuidv4()}
             label={`S${pastRank.season} ${
               pastRank.soloDuoRank ? pastRank.soloDuoRank : pastRank.flexRank
             }`}

@@ -22,6 +22,8 @@ const Match = ({ match, currentParticipant }) => {
   };
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  console.log(match);
   return (
     <>
       {!match.info.gameMode.includes("TUTORIAL") && currentParticipant && (

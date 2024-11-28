@@ -55,6 +55,8 @@ export const getRecentlyPlayedWith = async (matchHistory, summonerData) => {
     const me = match.info.participants.filter(
       (participant) => participant.summonerId === summonerData.id
     );
+
+    console.log(me);
     const f = match.info.participants.filter(
       (participant) =>
         participant.teamId === me[0].teamId &&
