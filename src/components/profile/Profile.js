@@ -7,36 +7,58 @@ import SummonerNotFound from "../errorPages/SummonerNotFound";
 import { getSummonerV2 } from "../../api/LeagueApi";
 import { profileActions } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
+
 const Profile = () => {
   const { summonerName, region } = useParams();
   const [notFound, setNotFound] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [extractedName, setExtractedName] = useState("");
+  const [extractedTagline, setExtractedTagline] = useState("");
   const profile = useSelector((state) => state.profile);
   const dispatch = useDispatch();
+
   useEffect(() => {
     setNotFound(false);
+    setLoading(true);
     dispatch(profileActions.emptySummonerData());
     const fetchSummonerData = async () => {
-      console.log(summonerName, region);
-      //get the name and tagname from summonerName
-      const summonerNameArray = summonerName.split("-");
-      const summonerResponseV1 = await getSummonerV2(
-        summonerNameArray[0],
-        summonerNameArray[1],
-        region
-      );
-      if (summonerResponseV1.status === 200 && summonerResponseV1) {
-        dispatch(profileActions.setSummonerData(summonerResponseV1.data));
-        dispatch(profileActions.setRegion(region));
-      } else {
-        setNotFound(true);
+      try {
+        console.log(summonerName, region);
+
+        // Split summonerName into name and tagline at the last hyphen
+        const lastHyphenIndex = summonerName.lastIndexOf("-");
+        const name = summonerName.substring(0, lastHyphenIndex);
+        const tagline = summonerName.substring(lastHyphenIndex + 1);
+
+        // Save extracted name and tagline for SummonerNotFound
+        setExtractedName(name);
+        setExtractedTagline(tagline);
+
+        console.log("Name:", name, "Tagline:", tagline);
+
+        const summonerResponseV1 = await getSummonerV2(name, tagline, region);
+
+        if (summonerResponseV1.status === 200 && summonerResponseV1) {
+          dispatch(profileActions.setSummonerData(summonerResponseV1.data));
+          dispatch(profileActions.setRegion(region));
+          setLoading(false);
+        } else {
+          setNotFound(true);
+        }
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          setNotFound(true);
+        }
+        setLoading(false);
       }
     };
     fetchSummonerData();
   }, [summonerName, region, dispatch]);
+
   return (
     <>
       {notFound ? (
-        <SummonerNotFound name={summonerName} />
+        <SummonerNotFound name={extractedName} tagLine={extractedTagline} />
       ) : (
         <>
           {profile.summonerData ? (
@@ -89,13 +111,16 @@ const Profile = () => {
               </Stack>
             </Box>
           ) : (
-            <Box sx={{ width: "100%" }}>
-              <LinearProgress color="inherit" />
-            </Box>
+            loading && (
+              <Box sx={{ width: "100%" }}>
+                <LinearProgress color="inherit" />
+              </Box>
+            )
           )}
         </>
       )}
     </>
   );
 };
+
 export default Profile;
