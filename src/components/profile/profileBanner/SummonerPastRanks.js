@@ -37,7 +37,7 @@ const SummonerPastRanks = ({ summonerData }) => {
         gap: "2.5px",
       }}
     >
-      {pastRanks.map((pastRank) => (
+      {pastRanks?.map((pastRank) => (
         <HtmlTooltip
           title={rankToolTip(pastRank.soloDuoRank, pastRank.flexRank)}
           placement="top"
