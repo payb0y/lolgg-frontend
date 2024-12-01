@@ -11,7 +11,7 @@ const Search = () => {
   const onSearch = (value) => {
     //print all the characters in the value
     const cleanValue = value.replace(/[^ -~]+/g, "");
-    const parts = cleanValue.split("#").map((part) => part.trim()); // Split and trim both parts
+    const parts = value.split("#").map((part) => part.trim()); // Split and trim both parts
     let gameName = parts[0]; // Encode gameName to handle special characters
     let tagLine = parts.length > 1 ? parts[1] : ""; // Encode tagLine, handle absence of tagLine
     //format the parts in utf-8
