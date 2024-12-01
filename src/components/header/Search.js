@@ -9,9 +9,13 @@ const Search = () => {
   };
   const navigate = useNavigate();
   const onSearch = (value) => {
-    const parts = value.split("#").map((part) => part.trim()); // Split and trim both parts
-    const gameName = encodeURIComponent(parts[0]); // Encode gameName to handle special characters
-    const tagLine = parts.length > 1 ? encodeURIComponent(parts[1]) : ""; // Encode tagLine, handle absence of tagLine
+    //print all the characters in the value
+    const cleanValue = value.replace(/[^ -~]+/g, "");
+    const parts = cleanValue.split("#").map((part) => part.trim()); // Split and trim both parts
+    let gameName = parts[0]; // Encode gameName to handle special characters
+    let tagLine = parts.length > 1 ? parts[1] : ""; // Encode tagLine, handle absence of tagLine
+    //format the parts in utf-8
+
     navigate(`/profile/${region}/${gameName}-${tagLine}`);
   };
   return (

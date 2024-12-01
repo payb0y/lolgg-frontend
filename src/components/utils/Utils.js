@@ -1,4 +1,3 @@
-import { Tag } from "antd";
 import { getUserV1 } from "../../api/LeagueApi";
 export const getGameType = (queueId) => {
   switch (queueId) {
