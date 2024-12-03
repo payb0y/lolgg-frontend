@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.5d22be51.css",
-    "main.js": "/static/js/main.13f64cd7.js",
+    "main.css": "/static/css/main.c919f59a.css",
+    "main.js": "/static/js/main.9ea6a9c8.js",
     "static/media/logo.jpeg": "/static/media/logo.17d57e5ab90f66310eb9.jpeg",
     "static/media/404sadporo.png": "/static/media/404sadporo.e84af0c1ccc812cf44c4.png",
     "index.html": "/index.html",
-    "main.5d22be51.css.map": "/static/css/main.5d22be51.css.map",
-    "main.13f64cd7.js.map": "/static/js/main.13f64cd7.js.map"
+    "main.c919f59a.css.map": "/static/css/main.c919f59a.css.map",
+    "main.9ea6a9c8.js.map": "/static/js/main.9ea6a9c8.js.map"
   },
   "entrypoints": [
-    "static/css/main.5d22be51.css",
-    "static/js/main.13f64cd7.js"
+    "static/css/main.c919f59a.css",
+    "static/js/main.9ea6a9c8.js"
   ]
 }
