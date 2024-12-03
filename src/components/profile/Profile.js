@@ -55,6 +55,12 @@ const Profile = () => {
     fetchSummonerData();
   }, [summonerName, region, dispatch]);
 
+  useEffect(() => {
+    if (profile.summonerData) {
+      document.title = `LOLGG | ${profile.summonerData.gameName}`;
+    }
+  }, [profile.summonerData]);
+
   return (
     <>
       {notFound ? (
