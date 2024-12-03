@@ -79,14 +79,35 @@ const SummonerBanner = ({ summonerData, region }) => {
             >
               <ProfileUpdate summonerData={summonerData} />
               <ProfileIcon summoner={summonerData} width={150} height={150} />
-              <Typography
-                variant="h6"
+              <Stack
+                spacing={0.5}
+                alignItems="center"
                 sx={{
-                  color: "white",
+                  backgroundColor: "rgba(0,0,0,0.3)",
+                  padding: "4px 12px",
+                  borderRadius: "4px",
                 }}
               >
-                {summonerData.name}
-              </Typography>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "white",
+                    fontWeight: 600,
+                    fontSize: "1.1rem",
+                  }}
+                >
+                  {summonerData.gameName}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "rgba(255,255,255,0.7)",
+                    fontSize: "0.9rem",
+                  }}
+                >
+                  #{summonerData.tagLine}
+                </Typography>
+              </Stack>
               <Button variant="outlined" onClick={HandleLive}>
                 Live Match
               </Button>

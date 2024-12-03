@@ -12,10 +12,7 @@ const MatchParticipants = ({ match, currentParticipant }) => {
   );
   const div = (participant) => {
     const name = participant.riotIdGameName;
-    let name1 = participant.riotIdGameName;
-    if (participant.riotIdGameName.length > 9) {
-      name1 = name1.substring(0, 7) + "...";
-    }
+
     return (
       <Stack
         spacing={0.5}
@@ -39,7 +36,7 @@ const MatchParticipants = ({ match, currentParticipant }) => {
           key={participant.riotIdGameName}
         >
           <SummonerName
-            summonerName={name1}
+            summonerName={name}
             tagLine={participant.riotIdTagline}
             id={name}
           />
