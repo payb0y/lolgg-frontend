@@ -65,7 +65,6 @@ const TooltipLeague = ({ children, content }) => {
       });
     }
   }
-  console.log(actives);
 
   const flavorMatches = content?.description.match(flavorPattern);
   let flavorText = "";
