@@ -9,15 +9,15 @@ const Search = () => {
   };
   const navigate = useNavigate();
   const onSearch = (value) => {
-    //print all the characters in the value
-    // const cleanValue = value.replace(/[^\p{L}\p{N}# -]+/gu, "");
-    // console.log(cleanValue);
     console.log(value);
 
-    const parts = value.split("#").map((part) => part.trim()); // Split and trim both parts
-    let gameName = parts[0]; // Encode gameName to handle special characters
-    let tagLine = parts.length > 1 ? parts[1] : ""; // Encode tagLine, handle absence of tagLine
-    //format the parts in utf-8
+    value = value.replace(/\u2066/g, "");
+    value = value.replace(/\u2069/g, "");
+    console.log(value);
+
+    const parts = value.split("#").map((part) => part.trim());
+    let gameName = parts[0];
+    let tagLine = parts.length > 1 ? parts[1] : "";
 
     navigate(`/profile/${region}/${gameName}-${tagLine}`);
   };

@@ -6,7 +6,7 @@ import CustomPaper from "../../../../../UI/CustomPaper";
 
 const MatchItemsOrder = ({ timeline, participantId }) => {
   const [groupedTimeline, setGroupedTimeline] = useState([]);
-
+  console.log(timeline);
   useEffect(() => {
     const events = timeline
       .flat()
