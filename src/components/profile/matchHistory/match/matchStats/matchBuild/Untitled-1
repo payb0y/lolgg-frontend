@@ -2,151 +2,145 @@
   {
     "itemId": 1101,
     "participantId": 2,
-    "timestamp": 12771,
-    "type": "ITEM_PURCHASED"
-  },
-  {
-    "itemId": 1102,
-    "participantId": 2,
-    "timestamp": 28270,
-    "type": "ITEM_PURCHASED"
-  },
-  {
-    "itemId": 2003,
-    "participantId": 2,
-    "timestamp": 29472,
+    "timestamp": 18223,
     "type": "ITEM_PURCHASED"
   },
   {
     "itemId": 3340,
     "participantId": 2,
-    "timestamp": 29740,
-    "type": "ITEM_PURCHASED"
-  },
-  {
-    "itemId": 3134,
-    "participantId": 2,
-    "timestamp": 326043,
-    "type": "ITEM_PURCHASED"
-  },
-  {
-    "itemId": 1001,
-    "participantId": 2,
-    "timestamp": 326595,
+    "timestamp": 19359,
     "type": "ITEM_PURCHASED"
   },
   {
     "itemId": 2003,
     "participantId": 2,
-    "timestamp": 329736,
-    "type": "ITEM_SOLD"
+    "timestamp": 19960,
+    "type": "ITEM_PURCHASED"
+  },
+  {
+    "itemId": 3158,
+    "participantId": 2,
+    "timestamp": 268877,
+    "type": "ITEM_PURCHASED"
   },
   {
     "itemId": 2055,
     "participantId": 2,
-    "timestamp": 334512,
+    "timestamp": 271816,
     "type": "ITEM_PURCHASED"
   },
   {
     "itemId": 3364,
     "participantId": 2,
-    "timestamp": 334846,
+    "timestamp": 272116,
     "type": "ITEM_PURCHASED"
   },
   {
-    "itemId": 6690,
+    "itemId": 3133,
     "participantId": 2,
-    "timestamp": 497400,
-    "type": "ITEM_PURCHASED"
-  },
-  {
-    "itemId": 1036,
-    "participantId": 2,
-    "timestamp": 604218,
-    "type": "ITEM_PURCHASED"
-  },
-  {
-    "itemId": 3142,
-    "participantId": 2,
-    "timestamp": 678325,
+    "timestamp": 429014,
     "type": "ITEM_PURCHASED"
   },
   {
     "itemId": 2055,
     "participantId": 2,
-    "timestamp": 688873,
+    "timestamp": 430216,
     "type": "ITEM_PURCHASED"
   },
   {
-    "itemId": 3047,
+    "itemId": 6692,
     "participantId": 2,
-    "timestamp": 881612,
-    "type": "ITEM_PURCHASED"
-  },
-  {
-    "itemId": 3134,
-    "participantId": 2,
-    "timestamp": 883282,
-    "type": "ITEM_PURCHASED"
-  },
-  {
-    "itemId": 1018,
-    "participantId": 2,
-    "timestamp": 883382,
+    "timestamp": 622540,
     "type": "ITEM_PURCHASED"
   },
   {
     "itemId": 2055,
     "participantId": 2,
-    "timestamp": 884420,
+    "timestamp": 623241,
     "type": "ITEM_PURCHASED"
   },
   {
-    "itemId": 6676,
+    "itemId": 1028,
     "participantId": 2,
-    "timestamp": 1061562,
+    "timestamp": 787660,
     "type": "ITEM_PURCHASED"
   },
   {
-    "itemId": 1036,
+    "itemId": 1028,
     "participantId": 2,
-    "timestamp": 1156896,
+    "timestamp": 787760,
     "type": "ITEM_PURCHASED"
   },
   {
-    "itemId": 1036,
+    "itemId": 3071,
     "participantId": 2,
-    "timestamp": 1160604,
+    "timestamp": 1045902,
     "type": "ITEM_PURCHASED"
   },
   {
-    "itemId": 3035,
+    "itemId": 3071,
     "participantId": 2,
-    "timestamp": 1249141,
+    "timestamp": 1057323,
     "type": "ITEM_PURCHASED"
   },
   {
-    "itemId": 1036,
+    "itemId": 2055,
     "participantId": 2,
-    "timestamp": 1274488,
-    "type": "ITEM_PURCHASED"
-  },
-  {
-    "itemId": 1018,
-    "participantId": 2,
-    "timestamp": 1368073,
-    "type": "ITEM_PURCHASED"
-  },
-  {
-    "itemId": 3036,
-    "participantId": 2,
-    "timestamp": 1486542,
+    "timestamp": 1058492,
     "type": "ITEM_PURCHASED"
   },
   {
     "itemId": 1036,
     "participantId": 2,
-    "timestamp": 1489315,
+    "timestamp": 1134234,
+    "type": "ITEM_PURCHASED"
+  },
+  {
+    "itemId": 1036,
+    "participantId": 2,
+    "timestamp": 1134334,
+    "type": "ITEM_PURCHASED"
+  },
+  {
+    "itemId": 3123,
+    "participantId": 2,
+    "timestamp": 1270941,
+    "type": "ITEM_PURCHASED"
+  },
+  {
+    "itemId": 3133,
+    "participantId": 2,
+    "timestamp": 1271575,
+    "type": "ITEM_PURCHASED"
+  },
+  {
+    "itemId": 2055,
+    "participantId": 2,
+    "timestamp": 1273278,
+    "type": "ITEM_PURCHASED"
+  },
+  {
+    "itemId": 1011,
+    "participantId": 2,
+    "timestamp": 1430380,
+    "type": "ITEM_PURCHASED"
+  },
+  {
+    "itemId": 6609,
+    "participantId": 2,
+    "timestamp": 1480800,
+    "type": "ITEM_PURCHASED"
+  },
+  {
+    "itemId": 2055,
+    "participantId": 2,
+    "timestamp": 1481902,
+    "type": "ITEM_PURCHASED"
+  },
+  {
+    "itemId": 1036,
+    "participantId": 2,
+    "timestamp": 1563607,
     "type": "ITEM_PURCHASED"
   }
 ]
