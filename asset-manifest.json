@@ -1,15 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.c919f59a.css",
-    "main.js": "/static/js/main.461e7687.js",
+    "main.css": "/static/css/main.22e2adcd.css",
+    "main.js": "/static/js/main.517f6ea7.js",
     "static/media/logo.jpeg": "/static/media/logo.17d57e5ab90f66310eb9.jpeg",
     "static/media/404sadporo.png": "/static/media/404sadporo.e84af0c1ccc812cf44c4.png",
-    "index.html": "/index.html",
-    "main.c919f59a.css.map": "/static/css/main.c919f59a.css.map",
-    "main.461e7687.js.map": "/static/js/main.461e7687.js.map"
+    "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.c919f59a.css",
-    "static/js/main.461e7687.js"
+    "static/css/main.22e2adcd.css",
+    "static/js/main.517f6ea7.js"
   ]
 }
