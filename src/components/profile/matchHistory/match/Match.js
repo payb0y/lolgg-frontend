@@ -59,11 +59,13 @@ const Match = ({ match, currentParticipant }) => {
                   width={30}
                   height={30}
                 />
-                <MatchRunes
-                  perks={currentParticipant.perks}
-                  width={30}
-                  height={30}
-                />
+                {match.info.queueId !== 1700 ?? (
+                  <MatchRunes
+                    perks={currentParticipant.perks}
+                    width={30}
+                    height={30}
+                  />
+                )}
               </Stack>
               <MatchKda currentParticipant={currentParticipant} />
             </Stack>

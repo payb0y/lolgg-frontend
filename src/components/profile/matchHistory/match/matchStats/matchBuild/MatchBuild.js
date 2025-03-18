@@ -34,7 +34,9 @@ const MatchBuild = ({ currentParticipant, match }) => {
       {timeline ? (
         <>
           <Stack direction={isMobile ? "column" : "row"} spacing={5}>
-            <MatchRunesFull participant={currentParticipant} />
+            {match.queueId !== 1700 && (
+              <MatchRunesFull participant={currentParticipant} />
+            )}
             <MatchSkillOrder
               participantId={currentParticipant.participantId}
               championName={currentParticipant.championName}

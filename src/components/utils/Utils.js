@@ -17,6 +17,8 @@ export const getGameType = (queueId) => {
       return "Blind Pick";
     case 480:
       return "SwiftPlay";
+    case 1700:
+      return "Arena";
     default:
       return "Unknown";
   }

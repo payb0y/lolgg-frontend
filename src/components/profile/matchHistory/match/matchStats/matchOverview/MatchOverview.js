@@ -72,7 +72,9 @@ const MatchOverview = ({ match }) => {
             width={20}
             height={20}
           />
-          <MatchRunes perks={participant.perks} width={20} height={20} />
+          {match.info.queueId !== 1700 && (
+            <MatchRunes perks={participant.perks} width={20} height={20} />
+          )}
         </Stack>
       </Stack>,
       <MatchKda currentParticipant={participant} />,
